@@ -6,12 +6,32 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>RS Work</title>
+    <style type="text/css">
+        #Text1 {
+            width: 454px;
+        }
+        #TxtBuscar {
+            width: 539px;
+        }
+        #BtnBuscar {
+            width: 127px;
+        }
+        #BtnPerfil {
+            width: 129px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>
-            Remote Smart Work
-        </h1>
+        <nav>
+         <img src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
+        <input id="TxtBuscar" type="text" />
+        <input id="BtnBuscar" type="button" value="Buscar Elementos" />
+        <input id="BtnPerfil" type="button" value="Perfil" />
+        <input id="BtnContacto" type="button" value="Contactanos" />
+    </nav>
+    </header>
+
         <article>
             <h2>Acerca de Nosotros</h2>
             <p>Aca va el texto acerca de nosotros</p>
@@ -27,9 +47,7 @@
             </div>
         </article>
 
-        <h2></h2>
-    </header>
-    
+        <h2></h2>   
 
 </body>
 </html>

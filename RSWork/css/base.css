@@ -1,0 +1,52 @@
+﻿
+
+
+#TxtBuscar {
+    width: 48%;
+    height: 2em;
+}
+
+#BtnBuscar {
+    width: 13%;
+    height: 2em;
+}
+
+#BtnPerfil {
+    width: 13%;
+    height: 2em;
+}
+
+
+#BtnContacto {
+    width: 13%;
+    height: 2em;
+}
+
+
+#navgeneral
+{
+    border: 1px solid black;
+    border-radius: 5px; 
+    padding: 1% 1% 1% 1%;
+    justify-content: center;
+    margin:auto;
+    justify-items: center;
+    align-items: center;
+    justify-self: center;
+    margin-bottom: 1em;
+}
+
+body {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+article {
+    border: 1px solid black;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0);
+    margin-top: 5em;
+    margin-bottom: 5em; 
+    padding-inline: 3em; 
+}

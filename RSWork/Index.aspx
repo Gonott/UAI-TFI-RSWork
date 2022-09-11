@@ -6,25 +6,12 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>RS Work</title>
-    <style type="text/css">
-        #Text1 {
-            width: 454px;
-        }
-        #TxtBuscar {
-            width: 539px;
-        }
-        #BtnBuscar {
-            width: 127px;
-        }
-        #BtnPerfil {
-            width: 129px;
-        }
-    </style>
+    <link href="css/base.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <nav>
-         <img src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
+        <nav id="navgeneral">
+         <img id="logohome" src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
         <input id="TxtBuscar" type="text" />
         <input id="BtnBuscar" type="button" value="Buscar Elementos" />
         <input id="BtnPerfil" type="button" value="Perfil" />

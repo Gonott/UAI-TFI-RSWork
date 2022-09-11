@@ -1,6 +1,5 @@
 ﻿
 
-
 #TxtBuscar {
     width: 48%;
     height: 2em;
@@ -22,11 +21,10 @@
     height: 2em;
 }
 
-
 #navgeneral
 {
     border: 1px solid black;
-    border-radius: 5px; 
+    border-radius: 15px; 
     padding: 1% 1% 1% 1%;
     justify-content: center;
     margin:auto;
@@ -39,14 +37,14 @@
 body {
     padding-left: 10%;
     padding-right: 10%;
+    background-color: beige;
 }
 
-
 article {
+    background-color: rgba(51, 153, 204, 0.5);
     border: 1px solid black;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0);
+    border-radius: 15px;
     margin-top: 5em;
-    margin-bottom: 5em; 
-    padding-inline: 3em; 
+    margin-bottom: 5em;
+    padding-inline: 3em;
 }

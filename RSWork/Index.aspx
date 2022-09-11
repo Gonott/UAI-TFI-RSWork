@@ -13,9 +13,9 @@
         <nav id="navgeneral">
          <img id="logohome" src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
         <input id="TxtBuscar" type="text" />
-        <input id="BtnBuscar" type="button" value="Buscar Elementos" />
-        <input id="BtnPerfil" type="button" value="Perfil" />
-        <input id="BtnContacto" type="button" value="Contactanos" />
+        <asp:Button ID="BtnBuscar" runat="server" Text="BuscarElementos" />
+        <asp:Button ID="BtnPerfil" runat="server" Text="Perfil" OnClick="BtnPerfil_Click" />
+        <asp:Button ID="BtnContacto" runat="server" Text="Contactános" />
     </nav>
     </header>
 

@@ -21,23 +21,31 @@
     height: 2em;
 }
 
-#navgeneral
+header
 {
     border: 1px solid black;
     border-radius: 15px; 
     padding: 1% 1% 1% 1%;
     justify-content: center;
-    margin:auto;
+    margin: 1em, 1em, 1em, 1em;
     justify-items: center;
     align-items: center;
     justify-self: center;
     margin-bottom: 1em;
+    position: fixed; 
+    top: 3px;
+    left: 10%;
+    right: 10%;
+    background: rgba(137, 187, 241, 0.5);
+    
+    
 }
 
 body {
     padding-left: 10%;
     padding-right: 10%;
     background-color: beige;
+    margin: auto;
 }
 
 article {
@@ -47,4 +55,5 @@ article {
     margin-top: 5em;
     margin-bottom: 5em;
     padding-inline: 3em;
+    top: 20%;
 }

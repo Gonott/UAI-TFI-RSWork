@@ -9,14 +9,17 @@
     <link href="css/base.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
+    
+    <header class="header">
         <nav id="navgeneral">
-         <img id="logohome" src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
-        <input id="TxtBuscar" type="text" />
-        <asp:Button ID="BtnBuscar" runat="server" Text="BuscarElementos" />
-        <asp:Button ID="BtnPerfil" runat="server" Text="Perfil" OnClick="BtnPerfil_Click" />
-        <asp:Button ID="BtnContacto" runat="server" Text="Contactános" />
-    </nav>
+            <form method="post" runat="server">
+                <img id="logohome" src="img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
+                <asp:TextBox ID="TxtBuscar" runat="server"></asp:TextBox>
+                <asp:Button ID="BtnBuscar" runat="server" Text="BuscarElementos" />
+                <asp:Button ID="BtnPerfil" runat="server" Text="Perfil" OnClick="BtnPerfil_Click" />
+                <asp:Button ID="BtnContacto" runat="server" Text="Contactános" />
+            </form>
+        </nav>
     </header>
 
         <article>

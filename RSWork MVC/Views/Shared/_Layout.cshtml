@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link href="~/css/base.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+    <nav id="navgeneral">
+        <form method="post" runat="server">
+            <img id="logohome" src="~/img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" style="width: 75px; height: 31px" />
+            <input id="TxtBuscar" type="text" />
+            <input id="BtnBuscar" type="button" value="Buscar" />
+            <input id="BtnPerfil" type="button" value="Perfil" />
+            <input id="BtnContacto" type="button" value="Contactanos" />
+        </form>
+    </nav>
+    </header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

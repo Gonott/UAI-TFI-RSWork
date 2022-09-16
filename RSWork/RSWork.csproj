@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="ContratoPreliminar.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -116,6 +117,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
+    <Content Include="ParametrosDelAlquiler.aspx" />
     <Content Include="PerfilCliente.aspx" />
     <Content Include="PerfilProveedor.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -155,6 +157,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ContratoPreliminar.aspx.cs">
+      <DependentUpon>ContratoPreliminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContratoPreliminar.aspx.designer.cs">
+      <DependentUpon>ContratoPreliminar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -171,6 +180,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParametrosDelAlquiler.aspx.cs">
+      <DependentUpon>ParametrosDelAlquiler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParametrosDelAlquiler.aspx.designer.cs">
+      <DependentUpon>ParametrosDelAlquiler.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfilCliente.aspx.cs">
       <DependentUpon>PerfilCliente.aspx</DependentUpon>

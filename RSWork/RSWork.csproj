@@ -116,6 +116,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
+    <Content Include="PerfilCliente.aspx" />
     <Content Include="PerfilProveedor.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilCliente.aspx.cs">
+      <DependentUpon>PerfilCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfilCliente.aspx.designer.cs">
+      <DependentUpon>PerfilCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfilProveedor.aspx.cs">
       <DependentUpon>PerfilProveedor.aspx</DependentUpon>

@@ -6,7 +6,13 @@
 
     <article>
 
-        <div>Datos del Contrato</div>
+        <div>Datos del Contrato
+            <asp:ListBox runat="server">
+                <asp:ListItem Text="text1" />
+                <asp:ListItem Text="text2" />
+            </asp:ListBox>
+        </div>
+
         <div>Contrato de Alquiler de elementos.</div>
 
     </article>

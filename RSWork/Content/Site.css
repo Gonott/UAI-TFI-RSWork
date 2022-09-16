@@ -62,11 +62,12 @@ article {
 }
 
 *{
-    /*font-family: 'Inter', sans-serif;*/
-    
+  
     font-family: 'Roboto', sans-serif;
 }
 
 h1, h2 {
     font-family: 'Raleway', sans-serif;
 }
+
+

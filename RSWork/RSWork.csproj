@@ -105,6 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMPublicaciones.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="ContratoPreliminar.aspx" />
     <Content Include="Default.aspx" />
@@ -155,6 +156,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMPublicaciones.aspx.cs">
+      <DependentUpon>ABMPublicaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMPublicaciones.aspx.designer.cs">
+      <DependentUpon>ABMPublicaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ContratoPreliminar.aspx.cs">

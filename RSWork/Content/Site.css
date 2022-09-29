@@ -8,21 +8,11 @@
     height: 2em;
 }
 
-#BtnBuscar {
+.button {
     width: 13%;
     height: 2em;
 }
 
-#BtnPerfil {
-    width: 13%;
-    height: 2em;
-}
-
-
-#BtnContacto {
-    width: 13%;
-    height: 2em;
-}
 
 header {
     border: 1px solid black;
@@ -50,7 +40,7 @@ body {
     right: 10%;
 }
 
-article {
+.contenedor {
     background-color: rgba(51, 153, 204, 0.5);
     border: 1px solid black;
     border-radius: 15px;
@@ -61,13 +51,10 @@ article {
     right: 10%;
 }
 
-*{
-  
+* {
     font-family: 'Roboto', sans-serif;
 }
 
 h1, h2 {
     font-family: 'Raleway', sans-serif;
 }
-
-

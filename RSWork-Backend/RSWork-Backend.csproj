@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Contrato.cs" />
+    <Compile Include="DAO.cs" />
     <Compile Include="Elemento.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Empresa.cs" />

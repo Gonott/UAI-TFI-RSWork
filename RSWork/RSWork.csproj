@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ABMPublicaciones.aspx" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\Site.css" />
     <Content Include="ContratoPreliminar.aspx" />
     <Content Include="Default.aspx" />

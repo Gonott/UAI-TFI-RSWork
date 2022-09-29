@@ -15,6 +15,15 @@ namespace RSWork
     {
 
         /// <summary>
+        /// Control LabelCod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCod;
+
+        /// <summary>
         /// Control LabelCUIT.
         /// </summary>
         /// <remarks>
@@ -22,15 +31,6 @@ namespace RSWork
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCUIT;
-
-        /// <summary>
-        /// Control LabelNombreEmp.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelNombreEmp;
 
         /// <summary>
         /// Control LabelCat.
@@ -42,13 +42,13 @@ namespace RSWork
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCat;
 
         /// <summary>
-        /// Control LabelCod.
+        /// Control LabelNombreEmp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCod;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelNombreEmp;
 
         /// <summary>
         /// Control ModificarBtn.

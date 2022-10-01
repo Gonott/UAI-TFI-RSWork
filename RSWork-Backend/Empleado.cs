@@ -143,10 +143,10 @@ namespace DAL
             foreach (DataRow registro in tabla.Rows)
             {
                 Empleado empleado = new Empleado();
-                empleado.DNI = registro.["DNI"];
-                empleado.Nombre = registro.["Nombre"];
-                empleado.Dirección = registro.["Direccion"];
-                empleado.Email = registro.["Email"];
+                empleado.DNI = int.Parse(registro["DNI"].ToString());
+                empleado.Nombre = registro["Nombre"].ToString();
+                empleado.Dirección = registro["Direccion"].ToString();
+                empleado.Email = registro["Email"].ToString();
                            
                 empleados.Add(empleado);
             }

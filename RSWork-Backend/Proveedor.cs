@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Proveedor
+    public class Proveedor : Empresa
     {
 
         public int CodigoProveedor { get; set; }
+
+        public TipoProveedor tipoProveedor { get; set; }
 
         public enum TipoProveedor
         {

@@ -1,6 +1,6 @@
 ﻿#login{
     display: flex;
     flex-direction: column;
-    align-content: center;
-
+    align-items: center;
+    top: 25%
 }

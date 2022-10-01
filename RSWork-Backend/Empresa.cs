@@ -9,7 +9,7 @@ namespace BE
     public abstract class Empresa
     {
 
-        public int CUIT { get; set; }
+        public Int64 CUIT { get; set; }
 
         public string Direccion { get; set; }
 

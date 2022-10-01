@@ -18,6 +18,10 @@ namespace BE
             Minorista
         }
 
+        public List<Orden> Ordenes { get; set; }
+
+
+
 
 
 

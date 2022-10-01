@@ -61,8 +61,8 @@ namespace DAL
             return resultado;
         }
 
-
-        public static DataTable LeerConParametros(string Sql, List<IDbDataParameter> parametros)
+        #region Leer
+   public static DataTable LeerConParametros(string Sql, List<IDbDataParameter> parametros)
         {
 
             SqlDataAdapter ad = new SqlDataAdapter();
@@ -85,6 +85,16 @@ namespace DAL
 
             return tabla;
         }
+
+
+
+        #endregion
+
+     
+
+        #region Creacion de Parametros
+
+
 
         public static IDbDataParameter CrearParametro(string nom, string valor)
         {
@@ -113,6 +123,10 @@ namespace DAL
             par.DbType = DbType.DateTime;
             return par;
         }
+
+
+        #endregion
+
 
 
     }

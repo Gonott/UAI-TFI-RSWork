@@ -9,7 +9,7 @@ using System.IO;
 
 namespace SERVICIOS
 {
-    public class Encriptador
+    public class Criptografo
     {
 
 

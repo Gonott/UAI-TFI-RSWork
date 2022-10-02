@@ -16,7 +16,7 @@ namespace DAL
 
         public static void Abrir()
         {
-            cn = new SqlConnection("Initial Catalog=dbSegundoParcialCampo; Data Source=DESKTOP-VUD3NBA; Integrated Security=SSPI");
+            cn = new SqlConnection("Data Source=(local);Initial Catalog=RSWork;Integrated Security=True");
             cn.Open();
         }
 

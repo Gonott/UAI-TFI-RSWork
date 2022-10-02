@@ -15,6 +15,15 @@ namespace RSWork
     {
 
         /// <summary>
+        /// Control LabelCod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCod;
+
+        /// <summary>
         /// Control LabelCUIT.
         /// </summary>
         /// <remarks>
@@ -24,6 +33,15 @@ namespace RSWork
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCUIT;
 
         /// <summary>
+        /// Control LabelTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelTipo;
+
+        /// <summary>
         /// Control LabelNombreEmp.
         /// </summary>
         /// <remarks>
@@ -31,24 +49,6 @@ namespace RSWork
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelNombreEmp;
-
-        /// <summary>
-        /// Control LabelCat.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCat;
-
-        /// <summary>
-        /// Control LabelCod.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCod;
 
         /// <summary>
         /// Control ModificarBtn.

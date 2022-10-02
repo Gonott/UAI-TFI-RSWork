@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BE
 {
@@ -31,7 +28,6 @@ namespace BE
 namespace BLL
 {
     using BE;
-    using SERVICIOS;
     using DAL;
 
     public class UsuarioBLL
@@ -44,9 +40,8 @@ namespace BLL
 
             bool rta = false;
 
-            if (mapper.ValidarUsuario()== true)
+            if (mapper.ValidarUsuario(UnUsuario)== true)
             {
-                IniciarSesion();
                 rta = true;
             }
             return rta;
@@ -54,26 +49,18 @@ namespace BLL
         }
 
 
-        public void IniciarSesion()
+        public Usuario LlenarUsuario(Usuario usu)
         {
-            //crear cookies y llevar a perfil segun empresa
-
-            mapper.CargarEmpresa(Sesion.ObtenerInstancia.EsteUsuario.idempresa);
-            if (Sesion.ObtenerInstancia.EsteUsuario.empresa.GetType() == typeof(Cliente))
+            try
             {
-                
-                //llevar a perfil cliente
-
-
+                return mapper.LlenarUsuario(usu);
             }
-            if (Sesion.ObtenerInstancia.EsteUsuario.empresa.GetType() == typeof(Proveedor))
+            catch (Exception)
             {
 
-                //llevar a perfil proveedor
-
+                throw;
             }
         }
-
 
 
     }
@@ -86,36 +73,26 @@ namespace BLL
 namespace DAL
 {
     using BE;
-    using SERVICIOS;
     using System.Data;
-    using System.Data.SqlClient;
 
 
     public class UsuarioDAL
     {
-        public bool ValidarUsuario()
+        public bool ValidarUsuario(Usuario usu)
         {
 
             try
             {
-                Usuario usu = new Usuario();
+                
 
                 DAO.Abrir();
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
                 parameters.Add(DAO.CrearParametro("@usu", usu.Nombre));
                 parameters.Add(DAO.CrearParametro("@pwd", usu.Contraseña));
-                DataTable tabla = DAO.Leer("ValidarUsuario", parameters);
+                DataTable tabla = DAO.LeerConParametros("ValidarUsuario", parameters);
                 DAO.Cerrar();
 
-                foreach ( DataRow row in tabla.Rows)
-                {
-                    Sesion.ObtenerInstancia.EsteUsuario.IdUsuario = int.Parse(row["IdUsuario"].ToString());
-                    Sesion.ObtenerInstancia.EsteUsuario.Nombre = row["Nombre"].ToString();
-                    Sesion.ObtenerInstancia.EsteUsuario.idempresa = int.Parse(row["IdEmpresa"].ToString());
-
-                }
-
-                
+                            
                 if (tabla.Rows.Count == 1)
                 {
                     return true;
@@ -131,93 +108,43 @@ namespace DAL
 
                 throw;
             }
-            finally
-            {
-                DAO.Cerrar();
-            }
 
 
 
 
         }
 
-        public void CargarEmpresa(int idempresa)
+        public Usuario LlenarUsuario(Usuario usu)
         {
-
             try
             {
-                
 
                 DAO.Abrir();
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-                DAO.CrearParametro("@idempresa", idempresa);
-                DataTable tabla = DAO.Leer("EncontrarEmpresa", parameters);
+                parameters.Add(DAO.CrearParametro("@usu", usu.Nombre));
+                parameters.Add(DAO.CrearParametro("@pwd", usu.Contraseña));
+                DataTable tabla = DAO.LeerConParametros("ValidarUsuario", parameters);
                 DAO.Cerrar();
 
-                //se verifica el campo tipoEmpresa
-
-
-                
                 foreach (DataRow row in tabla.Rows)
                 {
-                    if (row["TipoEmpresa"].ToString() == "Cliente")
-                    { 
-                        Cliente empresa = new Cliente();
-                        empresa.CodigoCliente = int.Parse(row["id"].ToString());
-                        empresa.Nombre = row["Nombre"].ToString();
-                        empresa.CUIT = Int64.Parse(row["CUIT"].ToString());
-                        empresa.Telefono = row["Telefono"].ToString();
-                        empresa.Direccion = row["Direccion"].ToString();
-                        empresa.email = row["Email"].ToString();
-                        empresa.Categoria = int.Parse(row["Categoria"].ToString());
-                        Sesion.ObtenerInstancia.EsteUsuario.empresa = empresa;
-                    }
+                    usu.IdUsuario = int.Parse(row["IdUsuario"].ToString());
+                    usu.Nombre = row["Nombre"].ToString();
+                    usu.idempresa = int.Parse(row["IdEmpresa"].ToString());
 
-                    if (row["TipoEmpresa"].ToString() == "Proveedor")
-                    {
-                        Proveedor empresa = new Proveedor();
-                        empresa.CodigoProveedor = int.Parse(row["id"].ToString());
-                        empresa.Nombre = row["Nombre"].ToString();
-                        empresa.CUIT = Int64.Parse(row["CUIT"].ToString());
-                        empresa.Telefono = row["Telefono"].ToString();
-                        empresa.Direccion = row["Direccion"].ToString();
-                        empresa.email = row["Email"].ToString();
-                        switch (row["TipoProveedor"].ToString())
-                        {
-                            case "Fabricante":
-                                empresa.tipoProveedor = Proveedor.TipoProveedor.Fabricante;
-                                break;
-                            case "Mayorista":
-                                empresa.tipoProveedor = Proveedor.TipoProveedor.Mayorista;
-                                break;
-                            case "Minorista":
-                                empresa.tipoProveedor = Proveedor.TipoProveedor.Minorista;
-                                break;
-                        }
-                        Sesion.ObtenerInstancia.EsteUsuario.empresa = empresa;
-
-
-                    }
-                    
                 }
 
+                return usu;
             }
             catch (Exception)
             {
 
                 throw;
             }
-            finally
-            {
-                DAO.Cerrar();
-            }
-
-
-
-
-
-
         }
+
+
+
 
 
     }

@@ -16,11 +16,13 @@ namespace RSWork
 
         protected void BtnPerfil_Click(object sender, EventArgs e)
         {
-            if (Request.Cookies["Usuario"] == null)
+            if (this.Session["Usuario"] == null)
+            //    Request.Cookies["Usuario"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
-            if(Request.Cookies["Usuario"]!= null)
+            if(this.Session["Usuario"].ToString() != null)
+                //(Request.Cookies["Usuario"]!= null)
             {
                 Response.Redirect("PerfilProveedor.aspx");
             }

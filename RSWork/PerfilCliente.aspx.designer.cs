@@ -33,6 +33,24 @@ namespace RSWork
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelCUIT;
 
         /// <summary>
+        /// Control txtBoxTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxTelefono;
+
+        /// <summary>
+        /// Control txtBoxDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDireccion;
+
+        /// <summary>
         /// Control LabelCat.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace RSWork
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LabelNombreEmp;
+
+        /// <summary>
+        /// Control txtboxEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtboxEmail;
 
         /// <summary>
         /// Control ModificarBtn.

@@ -32,20 +32,23 @@ namespace RSWork
             {
                 //El usuario sí existe en BD. 
                 usu = usuariobll.LlenarUsuario(usu);
-
-                Session["IdUsuario"] = usu.IdUsuario;
-                Session["Usuario"] = usu.Nombre;
-                Session["IdEmpresa"] = usu.idempresa;
-                //ahora a redireccionar segun el cliente, para ello hay que validar que tipo de cliente es.
                 usu.empresa = empbll.CargarEmpresa(usu.idempresa);
+                Session["Usuario"] = usu;
+
+
+                //ahora a redireccionar segun el cliente, para ello hay que validar que tipo de cliente es.
+                
                 if (usu.empresa.GetType() == typeof(Cliente))
                 {
-                    //HttpCookie cookieUsuario = new HttpCookie("Usuario", usu.Nombre);
-                   
+                    //tambien voy a guardar en sesion la empresa cliente
+                    Session["Cliente"] = usu.empresa;
+                    Response.Redirect("PerfilCliente.aspx");
                     //llevar perfil cliente
                 }
                 if (usu.empresa.GetType() == typeof(Proveedor))
                 {
+                    //en sesion tambien la empresa proveedora
+                    Session["Proveedor"] = usu.empresa;
                     //llevar perfil proveedor
                     Response.Redirect("PerfilProveedor.aspx");
                 }

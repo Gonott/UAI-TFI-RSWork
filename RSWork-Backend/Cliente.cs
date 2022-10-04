@@ -25,9 +25,11 @@ namespace BE
 
 namespace BLL
 {
-
+    using BE;
+    using DAL;
     public class ClienteBLL
     {
+        ClienteDAL mapper = new ClienteDAL();
 
 
         public BE.Cliente EncontrarEmpCliente(BE.Usuario usu)
@@ -36,7 +38,59 @@ namespace BLL
             return cliente;
         }
 
+
+        public void ModificarCliente(Cliente uncliente)
+        {
+            try
+            {
+                mapper.Modificar(uncliente);
+            }
+            catch (Exception exx)
+            {
+
+                throw;
+            }
+        }
+
     }
+
+
+}
+
+namespace DAL
+{
+    using System.Data;
+    using System.Data.SqlClient;
+    using BE;
+
+    public class ClienteDAL
+    {
+
+        public void Modificar(Cliente cliente)
+        {
+            DAO.Abrir();
+            List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+            parameters.Add(DAO.CrearParametro("@codcliente", cliente.CodigoCliente));
+            parameters.Add(DAO.CrearParametro("@telefono", cliente.Telefono));
+            parameters.Add(DAO.CrearParametro("@direccion", cliente.Direccion));
+            parameters.Add(DAO.CrearParametro("@email", cliente.email));
+            parameters.Add(DAO.CrearParametro("@cuit", cliente.CUIT));
+            DAO.Escribir("ModificarCliente", parameters);
+            DAO.Cerrar();
+
+        }
+
+        
+
+        
+
+
+
+
+
+    }
+
+
 
 
 }

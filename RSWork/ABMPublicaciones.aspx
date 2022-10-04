@@ -17,14 +17,14 @@
             <p>Cantidad Publicada: <asp:TextBox ID="TextBoxCantidad" runat="server">Cantidad</asp:TextBox></p>
         </div>
 
-        <div>
+        <article class="contenedor">
             <div>
                 <asp:Image ImageUrl="imageurl" runat="server" />
                 <br />
                 <asp:TextBox ID="TextBoxResumen" runat="server">Agregue un Resumen para mostrar</asp:TextBox>
             </div>
             <asp:FileUpload ID="FileUploadImgPub" runat="server" />
-        </div>
+        </article>
         
         <asp:Button ID="ButtonPublicar" runat="server" Text="Publicar" />
         <asp:Button Text="Modificar" runat="server" ID ="ButtonModificar" />

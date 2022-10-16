@@ -87,13 +87,13 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.Button ModificarBtn;
 
         /// <summary>
-        /// Control ListBox1.
+        /// Control grillaEmpleados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.GridView grillaEmpleados;
 
         /// <summary>
         /// Control TextBoxDNI.
@@ -132,13 +132,13 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
 
         /// <summary>
-        /// Control BtnCrear.
+        /// Control BtnAlta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCrear;
+        protected global::System.Web.UI.WebControls.Button BtnAlta;
 
         /// <summary>
         /// Control BtnModificar.
@@ -150,13 +150,13 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.Button BtnModificar;
 
         /// <summary>
-        /// Control BtnEliminar.
+        /// Control BtnBaja.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnEliminar;
+        protected global::System.Web.UI.WebControls.Button BtnBaja;
 
         /// <summary>
         /// Control ListBoxContratos.

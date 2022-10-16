@@ -8,8 +8,8 @@
     <article id="datosemp" class="contenedor">
         <div id="div1">
             <h2>Datos de Empresa</h2>
-            <label id="LabelCod" runat="server" text="Codigo1234">Codigo123456</label><br />
-            <label id="LabelCUIT" runat="server" text="CUIT">CUIT123456</label><br />
+            <label id="LabelCod" runat="server" text="Codigo1234"></label><br />
+            <label id="LabelCUIT" runat="server" text="CUIT"></label><br />
             <label>Teléfono </label>
             <asp:TextBox ID="txtBoxTelefono" runat="server" value =" "></asp:TextBox>
             <br />
@@ -39,7 +39,16 @@
 
         <div id="div4">
             <h2>Mis Empleados</h2>
-            <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+
+            <asp:GridView ID="grillaEmpleados"  runat="server" OnRowCommand="Grilla_RowCommand" AutoGenerateColumns="False" Width="100%">
+                        <Columns>
+                            <asp:BoundField DataField="DNI" HeaderText="DNI"  />
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:ButtonField CommandName="btnSeleccionarEmpleado" Text="Seleccionar" />
+                        </Columns>
+                    </asp:GridView>
 
         </div>
         <div id="div5">
@@ -60,10 +69,10 @@
 
         </div>
         <div id="div6">
-
-            <asp:Button class="tresbotones" ID="BtnCrear" runat="server" Text="Crear" />
-            <asp:Button class="tresbotones" ID="BtnModificar" runat="server" Text="Modificar" />
-            <asp:Button class="tresbotones" ID="BtnEliminar" runat="server" Text="Eliminar" />
+            <asp:Button ID="BtnAlta" CssClass="tresbotones" runat="server" Text="Alta" OnClick="BtnAlta_Click" />
+            <asp:Button ID="BtnModificar" CssClass="tresbotones" runat="server" Text="Modificar" OnClick="BtnModificar_Click" />
+            <asp:Button ID="BtnBaja" CssClass="tresbotones" runat="server" Text="Baja" OnClick="BtnBaja_Click"  />
+            
 
         </div>
     </article>

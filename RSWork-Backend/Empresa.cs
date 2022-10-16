@@ -81,8 +81,8 @@ namespace DAL
                    empresa.CodigoCliente = int.Parse(tabla.Rows[0]["id"].ToString());
                    empresa.Nombre = tabla.Rows[0]["Nombre"].ToString();
                    empresa.CUIT = Int64.Parse(tabla.Rows[0]["CUIT"].ToString());
-                   empresa.Telefono = tabla.Rows[0]["Telefono"].ToString();
                    empresa.Direccion = tabla.Rows[0]["Direccion"].ToString();
+                   empresa.Telefono = tabla.Rows[0]["Telefono"].ToString();
                    empresa.email = tabla.Rows[0]["Email"].ToString();
                    empresa.Categoria = int.Parse(tabla.Rows[0]["Categoria"].ToString());
                    emp = empresa;
@@ -94,8 +94,8 @@ namespace DAL
                 empresa.CodigoProveedor = int.Parse(tabla.Rows[0]["id"].ToString());
                 empresa.Nombre = tabla.Rows[0]["Nombre"].ToString();
                 empresa.CUIT = Int64.Parse(tabla.Rows[0]["CUIT"].ToString());
-                empresa.Telefono = tabla.Rows[0]["Telefono"].ToString();
                 empresa.Direccion = tabla.Rows[0]["Direccion"].ToString();
+                empresa.Telefono = tabla.Rows[0]["Telefono"].ToString();
                 empresa.email = tabla.Rows[0]["Email"].ToString();
                 switch (tabla.Rows[0]["TipoProveedor"].ToString())
                 {

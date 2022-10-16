@@ -44,6 +44,7 @@ namespace BLL
             try
             {
                 mapper.Modificar(uncliente);
+
             }
             catch (Exception exx)
             {
@@ -81,12 +82,6 @@ namespace DAL
         }
 
         
-
-        
-
-
-
-
 
     }
 

@@ -21,6 +21,7 @@ namespace RSWork
             {
                 CargarDatosEmpresa();
                 EnlazarEmpleados();
+                EnlazarContratos();
             }
 
         }
@@ -124,6 +125,8 @@ namespace RSWork
 
 
 
+
+
         private void EnlazarEmpleados()
         {
             List<Empleado> empleados = new List<Empleado>();
@@ -138,7 +141,6 @@ namespace RSWork
             });
 
             grillaEmpleados.DataBind();
-            //grillaEmpleados.Columns[0].Visible = false;
         }
 
 
@@ -167,7 +169,7 @@ namespace RSWork
             }
         }
 
-
+        
         
         
         private void LimpiarTextEmpleados()
@@ -177,6 +179,62 @@ namespace RSWork
             TextBoxNombreEmp.Text = " ";
             TextBoxEmail.Text = "";
             TextBoxDireccionEmp.Text = "";
+        }
+
+
+
+        private void EnlazarContratos()
+        {
+            ContratoBLL contratoBLL = new ContratoBLL();
+            
+            List<Contrato> contratos = new List<Contrato>();
+            contratos = contratoBLL.ContratosCliente((Cliente)Session["Cliente"]);
+
+            GrillaContratos.DataSource = contratos.Select(cont => new
+            {
+                NroContrato = cont.NumeroContrato,
+                CodProveedor = cont.codProveedor,
+                FechaContrato = cont.FechaContrato,
+                FechaInicio = cont.FechaInicio,
+                FechaFin = cont.FechaFinal,
+                Monto = cont.Monto
+
+            }) ;
+
+            GrillaContratos.DataBind();
+
+        }
+
+        protected void GrillaContrato_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Contrato conTemp = new Contrato();
+            int codContrato = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text);
+            int codProveedor = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text);
+            DateTime fecContrato = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[2].Text);
+            DateTime fecInicio = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[3].Text);
+            DateTime fecFin = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[4].Text);
+
+
+            //switch (e.CommandName) //aca hay que ir a llenar el contrato con los elementos y demás.
+            //{
+            //case "btnVerContrato":
+            //{
+
+            //TextBoxDNI.Text = dniEmpleado.ToString();
+            //TextBoxNombreEmp.Text = nombreEmpleado.ToString();
+            //TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
+            //TextBoxEmail.Text = emailEmpleado.ToString();
+
+            //break;
+            //}
+
+
+            //}
+        }
+
+        protected void GrillaContratos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

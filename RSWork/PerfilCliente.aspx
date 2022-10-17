@@ -82,7 +82,19 @@
         <div id="div7">
             <h2>Mis Contratos</h2>
             <label>Mis Contratos Activos</label><br />
-            <asp:ListBox ID="ListBoxContratos" runat="server"></asp:ListBox>
+
+            <asp:GridView ID="GrillaContratos" runat="server"  AutoGenerateColumns="False" Width="100%" OnSelectedIndexChanged="GrillaContratos_SelectedIndexChanged">
+                 <Columns>
+                            <asp:BoundField DataField="NroContrato" HeaderText="Nro Contrato"  />
+                            <asp:BoundField DataField="CodProveedor" HeaderText="Cod Proveedor" />
+                            <asp:BoundField DataField="FechaContrato" HeaderText="Fecha Contrato" />
+                            <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
+                            <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
+                            <asp:BoundField DataField ="Monto" HeaderText ="Monto" />
+                            <asp:ButtonField CommandName="btnVerContrato" Text="Ver" />
+                 </Columns>
+            </asp:GridView>
+            <br />
         </div>
         <div id="div8">
             <label>Contrato</label>

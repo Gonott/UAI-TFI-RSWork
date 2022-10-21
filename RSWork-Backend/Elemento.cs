@@ -35,7 +35,7 @@ namespace BE
         }
 
 
-
+        public int stockProveedor;
 
 
     }
@@ -59,18 +59,18 @@ namespace BLL
         }
 
 
-        public List<BE.Elemento> ListarElementos()
+        public List<BE.Elemento> ListarElementos(Proveedor proveedor)
         {
-            List<BE.Elemento> elementos = mapper.listar();
+            List<BE.Elemento> elementos = mapper.listar(proveedor);
             return elementos;
         }
 
 
-        public void Alta(Elemento elemento)
+        public void Alta(Elemento elemento, Proveedor proveedor)
         {
             try
             {
-                mapper.alta(elemento);
+                mapper.alta(elemento, proveedor);
             }
             catch (Exception)
             {
@@ -79,11 +79,11 @@ namespace BLL
 
         }
 
-        public void Baja(Elemento elemento)
+        public void Baja(Elemento elemento, Proveedor proveedor)
         {
             try
             {
-                mapper.baja(elemento);
+                mapper.baja(elemento, proveedor);
             }
             catch (Exception)
             {
@@ -93,11 +93,11 @@ namespace BLL
         }
 
 
-        public void Modificar(Elemento elemento)
+        public void Modificar(Elemento elemento, Proveedor proveedor)
         {
             try
             {
-                mapper.modificar(elemento); 
+                mapper.modificar(elemento,proveedor); 
             }
             catch (Exception)
             {
@@ -123,7 +123,7 @@ namespace DAL
 
 
 
-        public void alta(Elemento elemento)
+        public void alta(Elemento elemento,Proveedor proveedor)
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
@@ -132,25 +132,27 @@ namespace DAL
             parameters.Add(DAO.CrearParametro("@condicion",elemento.Condición));
             parameters.Add(DAO.CrearParametro("@descripcion",elemento.Descripción));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
+            parameters.Add(DAO.CrearParametro("@cantidad", elemento.stockProveedor));
+            parameters.Add(DAO.CrearParametro("@codproveedor", proveedor.CodigoProveedor));
             DAO.Escribir("AltaElemento", parameters);
 
             DAO.Cerrar();
         }
 
 
-        public void baja(Elemento elemento)
+        public void baja(Elemento elemento, Proveedor proveedor)
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-
             parameters.Add(DAO.CrearParametro("@codigo", elemento.Código));
+            parameters.Add(DAO.CrearParametro("@codproveedor", proveedor.CodigoProveedor));
             DAO.Escribir("BajaElemento", parameters);
 
             DAO.Cerrar();
         }
 
 
-        public void modificar(Elemento elemento)
+        public void modificar(Elemento elemento,Proveedor proveedor)
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
@@ -159,17 +161,19 @@ namespace DAL
             parameters.Add(DAO.CrearParametro("@condicion", elemento.Condición));
             parameters.Add(DAO.CrearParametro("@descripcion", elemento.Descripción));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
+            parameters.Add(DAO.CrearParametro("@cantidad", elemento.stockProveedor));
+            parameters.Add(DAO.CrearParametro("@codproveedor", proveedor.CodigoProveedor));
             DAO.Escribir("ModificarElemento", parameters);
-
             DAO.Cerrar();
         }
 
-        public List<Elemento> listar()
+        public List<Elemento> listar(Proveedor proveedor)
         {
             List<Elemento> elementos = new List<Elemento>();
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-            DataTable tabla = DAO.Leer("ListarElementos", parameters);
+            parameters.Add(DAO.CrearParametro("@codigoproveedor", proveedor.CodigoProveedor));
+            DataTable tabla = DAO.LeerConParametros("ListarElementos", parameters); //lista haciendo inner join con la tabla intermedia de stock.
 
             DAO.Cerrar();
 
@@ -181,6 +185,7 @@ namespace DAL
                 elemento.Condición =registro["Condicion"].ToString();
                 elemento.Descripción=registro["Descripcion"].ToString();
                 elemento.Nombre = registro["Nombre"].ToString();
+                elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
                 switch (registro["Tipo"].ToString())
                 {
                     case "Notebook":

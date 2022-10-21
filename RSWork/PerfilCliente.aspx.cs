@@ -215,21 +215,21 @@ namespace RSWork
             DateTime fecFin = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[4].Text);
 
 
-            //switch (e.CommandName) //aca hay que ir a llenar el contrato con los elementos y demás.
-            //{
-            //case "btnVerContrato":
-            //{
+            switch (e.CommandName) //aca hay que ir a llenar el contrato con los elementos y demás.
+            {
+                case "btnVerContrato":
+                    {
 
-            //TextBoxDNI.Text = dniEmpleado.ToString();
-            //TextBoxNombreEmp.Text = nombreEmpleado.ToString();
-            //TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
-            //TextBoxEmail.Text = emailEmpleado.ToString();
+                        //TextBoxDNI.Text = dniEmpleado.ToString();
+                        //TextBoxNombreEmp.Text = nombreEmpleado.ToString();
+                        //TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
+                        //TextBoxEmail.Text = emailEmpleado.ToString();
 
-            //break;
-            //}
+                        break;
+                    }
 
 
-            //}
+            }
         }
 
         protected void GrillaContratos_SelectedIndexChanged(object sender, EventArgs e)

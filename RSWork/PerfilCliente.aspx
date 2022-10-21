@@ -41,14 +41,14 @@
             <h2>Mis Empleados</h2>
 
             <asp:GridView ID="grillaEmpleados"  runat="server" OnRowCommand="Grilla_RowCommand" AutoGenerateColumns="False" Width="100%">
-                        <Columns>
-                            <asp:BoundField DataField="DNI" HeaderText="DNI"  />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-                            <asp:BoundField DataField="Email" HeaderText="Email" />
-                            <asp:ButtonField CommandName="btnSeleccionarEmpleado" Text="Seleccionar" />
-                        </Columns>
-                    </asp:GridView>
+                <Columns>
+                    <asp:BoundField DataField="DNI" HeaderText="DNI"  />
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                    <asp:ButtonField CommandName="btnSeleccionarEmpleado" Text="Seleccionar" />
+                </Columns>
+            </asp:GridView>
 
         </div>
         <div id="div5">
@@ -85,13 +85,13 @@
 
             <asp:GridView ID="GrillaContratos" runat="server"  AutoGenerateColumns="False" Width="100%" OnSelectedIndexChanged="GrillaContratos_SelectedIndexChanged">
                  <Columns>
-                            <asp:BoundField DataField="NroContrato" HeaderText="Nro Contrato"  />
-                            <asp:BoundField DataField="CodProveedor" HeaderText="Cod Proveedor" />
-                            <asp:BoundField DataField="FechaContrato" HeaderText="Fecha Contrato" />
-                            <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
-                            <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
-                            <asp:BoundField DataField ="Monto" HeaderText ="Monto" />
-                            <asp:ButtonField CommandName="btnVerContrato" Text="Ver" />
+                     <asp:BoundField DataField="NroContrato" HeaderText="Nro Contrato"  />
+                     <asp:BoundField DataField="CodProveedor" HeaderText="Cod Proveedor" />
+                     <asp:BoundField DataField="FechaContrato" HeaderText="Fecha Contrato" />
+                     <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
+                     <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
+                     <asp:BoundField DataField ="Monto" HeaderText ="Monto" />
+                     <asp:ButtonField CommandName="btnVerContrato" Text="Ver" />
                  </Columns>
             </asp:GridView>
             <br />

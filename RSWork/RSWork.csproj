@@ -237,7 +237,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="img\" />
+    <Folder Include="img\imgPublicaciones\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

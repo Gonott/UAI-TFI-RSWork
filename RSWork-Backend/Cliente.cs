@@ -32,12 +32,7 @@ namespace BLL
         ClienteDAL mapper = new ClienteDAL();
 
 
-        public BE.Cliente EncontrarEmpCliente(BE.Usuario usu)
-        {
-            BE.Cliente cliente = new BE.Cliente();
-            return cliente;
-        }
-
+    
 
         public void ModificarCliente(Cliente uncliente)
         {

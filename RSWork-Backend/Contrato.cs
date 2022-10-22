@@ -29,6 +29,8 @@ namespace BE
 
         public Proveedor proveedor { get; set; }
 
+        public List<Pago> pagos { get; set; }
+
     }
 }
 
@@ -69,6 +71,12 @@ namespace BLL
         }
 
     }
+
+    ////asignar los elementos al pago
+    ///luego toca calcular el plan de pagos.
+    ///luego asignar los pagos.
+    ///luego pegarle a dal. 
+    
 
 
 }
@@ -140,22 +148,141 @@ namespace DAL
         }
 
 
+
+
+
         //Crear Contratos.
-        public void AltaContrato(Contrato contrato)
+        public void AltaContratoCabecera(Contrato contrato)
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
 
-            //parameters.Add(DAO.CrearParametro("@DNI", empleado.DNI));
-            //parameters.Add(DAO.CrearParametro("@Nombre", empleado.Nombre));
-            //parameters.Add(DAO.CrearParametro("@Direccion", empleado.Dirección));
-            //parameters.Add(DAO.CrearParametro("@Email", empleado.Email));
-            //parameters.Add(DAO.CrearParametro("@idempleador", empleador.CodigoCliente));
-            //DAO.Escribir("AltaContrato", parameters);
+            parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
+            parameters.Add(DAO.CrearParametro("@codProveedor", contrato.codProveedor));
+            parameters.Add(DAO.CrearParametro("@codCliente", contrato.codCliente));
+            parameters.Add(DAO.CrearParametro("@fechaContrato", contrato.FechaContrato));
+            parameters.Add(DAO.CrearParametro("@fechaInicio", contrato.FechaInicio));
+            parameters.Add(DAO.CrearParametro("@fechaFin", contrato.FechaFinal));
+            parameters.Add(DAO.CrearParametro("@monto", contrato.Monto));
+            DAO.Escribir("AltaCabeceraContrato", parameters);
 
             DAO.Cerrar();
 
         }
+
+
+        public void AltaContratoDetalle(Contrato contrato)
+        {
+            DAO.Abrir();
+            foreach (Elemento item in contrato.Elementos)
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
+                parameters.Add(DAO.CrearParametro("@nroElemento", item.Código));
+                DAO.Escribir("AltaContratoDetalle", parameters);
+            }
+            DAO.Cerrar();
+
+        }
+
+
+
+        public void AltaContratoPagos(Contrato contrato)
+        {
+
+            DAO.Abrir();
+            foreach (Pago item in contrato.pagos)
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DAO.CrearParametro("@idContrato", contrato.NumeroContrato));
+                parameters.Add(DAO.CrearParametro("@fecha", item.fecha));
+                parameters.Add(DAO.CrearParametro("@hora", item.hora));
+                parameters.Add(DAO.CrearParametro("@pagado", item.pagado.ToString()));
+                DAO.Escribir("AltaContratoPagos", parameters);
+            }
+            DAO.Cerrar();
+
+        }
+
+
+
+        public Contrato LlenarContrato(Contrato contrato)
+        {
+
+            //llenar los elementos del contrato.
+
+            DAO.Abrir();
+            List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+            parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
+            DataTable tabla = DAO.LeerConParametros("ListarElementosContrato", parameters); //lista haciendo inner join con la tabla intermedia de ContratoDetalle.
+
+            DAO.Cerrar();
+
+            foreach (DataRow registro in tabla.Rows)
+            {
+                Elemento elemento = new Elemento();
+                elemento.Código = int.Parse(registro["Codigo"].ToString());
+                elemento.Caracteristicas = registro["Caracteristicas"].ToString();
+                elemento.Condición = registro["Condicion"].ToString();
+                elemento.Descripción = registro["Descripcion"].ToString();
+                elemento.Nombre = registro["Nombre"].ToString();
+                elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
+                switch (registro["Tipo"].ToString())
+                {
+                    case "Notebook":
+                        elemento.Tipo = Elemento.TipoElemento.Notebook;
+                        break;
+                    case "Desktop":
+                        elemento.Tipo = Elemento.TipoElemento.Desktop;
+                        break;
+                    case "Monitor":
+                        elemento.Tipo = Elemento.TipoElemento.Monitor;
+                        break;
+                    case "Periferico":
+                        elemento.Tipo = Elemento.TipoElemento.Periferico;
+                        break;
+                    case "Escritorio":
+                        elemento.Tipo = Elemento.TipoElemento.Escritorio;
+                        break;
+                    case "Silla":
+                        elemento.Tipo = Elemento.TipoElemento.Silla;
+                        break;
+                }
+                elemento.Precio = decimal.Parse(registro["Precio"].ToString());
+                contrato.Elementos.Add(elemento);
+
+            }
+
+
+            ////ahora listar los pagos del contrato.
+
+            List<Pago> pagos = new List<Pago>();
+            DAO.Abrir();
+            List<IDbDataParameter> parameterspay = new List<IDbDataParameter>();
+            parameterspay.Add(DAO.CrearParametro("@idcontrato", contrato.NumeroContrato));
+            DataTable tablacontratos = DAO.LeerConParametros("ListarPagosContrato", parameterspay);
+
+            foreach (DataRow registro in tablacontratos.Rows)
+            {
+                Pago pago = new Pago();
+                pago.nroPago = int.Parse(registro["NroPago"].ToString());
+                pago.fecha = DateTime.Parse(registro["Fecha"].ToString()); ;
+                pago.hora = registro["hora"].ToString();
+                pago.pagado= bool.Parse(registro["pagado"].ToString());
+                contrato.pagos.Add(pago);
+
+            }
+
+            return contrato;
+
+
+
+
+
+
+
+        }
+
 
 
 

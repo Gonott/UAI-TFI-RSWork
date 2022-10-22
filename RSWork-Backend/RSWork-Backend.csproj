@@ -49,6 +49,7 @@
     <Compile Include="Empresa.cs" />
     <Compile Include="Criptografo.cs" />
     <Compile Include="Orden.cs" />
+    <Compile Include="Pago.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="Publicacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

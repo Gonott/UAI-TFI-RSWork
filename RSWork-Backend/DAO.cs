@@ -125,6 +125,13 @@ namespace DAL
         }
 
 
+        public static IDbDataParameter CrearParametro(string nom, float valor)
+        {
+            SqlParameter par = new SqlParameter(nom, valor);
+            par.DbType = DbType.Double;
+            return par;
+        }
+
         #endregion
 
 

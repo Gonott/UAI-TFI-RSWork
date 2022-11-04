@@ -154,6 +154,7 @@ namespace DAL
         //Crear Contratos.
         public void AltaContratoCabecera(Contrato contrato)
         {
+            ///sirve para dar de alta la cabecera del contrato.
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
 
@@ -287,6 +288,8 @@ namespace DAL
 
 
         //Ver el detalle de un contrato - Cargar contrato full.
+
+
   
 
     }

@@ -27,5 +27,11 @@ namespace RSWork
                 Response.Redirect("PerfilProveedor.aspx");
             }
         }
+
+        protected void LogoHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
     }
 }

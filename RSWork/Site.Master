@@ -26,7 +26,7 @@
             <header class="header">
                 <nav id="navgeneral">
 
-                    <asp:Image runat="server" ID="logohome" src="/img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" Style="width: 75px; height: 31px" />
+                    <asp:Image runat="server" ID="logohome" src="/img/logo/7475095913_5857cb8d-0fb5-4261-807a-3c597f89a1b2.png" alt="RSWork Logo" Style="width: 75px; height: 31px" OnClick="LogoHome_Click"/>
                     <input id="TxtBuscar" type="text" />
                     <asp:Button Class="button" ID="BtnBuscar" runat="server" Text="Buscar" />
                     <asp:Button Class="button" ID="BtnPerfil" runat="server" Text="Perfil" OnClick="BtnPerfil_Click" />

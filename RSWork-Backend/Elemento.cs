@@ -92,7 +92,20 @@ namespace BLL
             }
         }
 
+        public Elemento Seleccionar(int cod)
+        {
+            try
+            {
+                return mapper.Seleccionar(cod);
+            }
+            catch (Exception exx)
+            {
 
+                throw exx;
+            }
+
+
+        }
         public void Modificar(Elemento elemento, Proveedor proveedor)
         {
             try
@@ -123,6 +136,8 @@ namespace DAL
 
 
 
+
+
         public void alta(Elemento elemento,Proveedor proveedor)
         {
             DAO.Abrir();
@@ -130,7 +145,9 @@ namespace DAL
 
             parameters.Add(DAO.CrearParametro("@caracteristicas",elemento.Caracteristicas));
             parameters.Add(DAO.CrearParametro("@condicion",elemento.Condición));
-            parameters.Add(DAO.CrearParametro("@descripcion",elemento.Descripción));
+            parameters.Add(DAO.CrearParametro("@descripcion", elemento.Descripción));
+            parameters.Add(DAO.CrearParametro("@nombre",elemento.Nombre));
+            parameters.Add(DAO.CrearParametro("@tipo", elemento.Tipo.ToString()));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
             parameters.Add(DAO.CrearParametro("@cantidad", elemento.stockProveedor));
             parameters.Add(DAO.CrearParametro("@codproveedor", proveedor.CodigoProveedor));
@@ -156,9 +173,10 @@ namespace DAL
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-
+            parameters.Add(DAO.CrearParametro("@codigo", elemento.Código));
             parameters.Add(DAO.CrearParametro("@caracteristicas", elemento.Caracteristicas));
-            parameters.Add(DAO.CrearParametro("@condicion", elemento.Condición));
+            parameters.Add(DAO.CrearParametro("@nombre", elemento.Nombre));
+            parameters.Add(DAO.CrearParametro("@tipo", elemento.Tipo.ToString()));
             parameters.Add(DAO.CrearParametro("@descripcion", elemento.Descripción));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
             parameters.Add(DAO.CrearParametro("@cantidad", elemento.stockProveedor));
@@ -218,6 +236,52 @@ namespace DAL
 
         }
 
+
+        public Elemento Seleccionar(int cod)
+        {
+
+            List<Elemento> elementos = new List<Elemento>();
+            DAO.Abrir();
+            List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+            parameters.Add(DAO.CrearParametro("@codigoelemento", cod));
+            DataTable tabla = DAO.LeerConParametros("SeleccionarElemento", parameters); 
+            DAO.Cerrar();
+
+            foreach (DataRow registro in tabla.Rows)
+            {
+                Elemento elemento = new Elemento();
+                elemento.Código = int.Parse(registro["Codigo"].ToString());
+                elemento.Caracteristicas = registro["Caracteristicas"].ToString();
+                elemento.Condición = registro["Condicion"].ToString();
+                elemento.Descripción = registro["Descripcion"].ToString();
+                elemento.Nombre = registro["Nombre"].ToString();
+                switch (registro["Tipo"].ToString())
+                {
+                    case "Notebook":
+                        elemento.Tipo = Elemento.TipoElemento.Notebook;
+                        break;
+                    case "Desktop":
+                        elemento.Tipo = Elemento.TipoElemento.Desktop;
+                        break;
+                    case "Monitor":
+                        elemento.Tipo = Elemento.TipoElemento.Monitor;
+                        break;
+                    case "Periferico":
+                        elemento.Tipo = Elemento.TipoElemento.Periferico;
+                        break;
+                    case "Escritorio":
+                        elemento.Tipo = Elemento.TipoElemento.Escritorio;
+                        break;
+                    case "Silla":
+                        elemento.Tipo = Elemento.TipoElemento.Silla;
+                        break;
+                }
+                elemento.Precio = decimal.Parse(registro["Precio"].ToString());
+                elementos.Add(elemento);
+
+            }
+            return elementos[0];
+        }
 
 
 

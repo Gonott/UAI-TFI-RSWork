@@ -123,13 +123,22 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.TextBox TextBoxPrecio;
 
         /// <summary>
-        /// Control ListBoxTipo.
+        /// Control DropDownTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBoxTipo;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownTipo;
+
+        /// <summary>
+        /// Control DropDownCondicion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownCondicion;
 
         /// <summary>
         /// Control TextBoxCaracteristicas.
@@ -141,40 +150,31 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.TextBox TextBoxCaracteristicas;
 
         /// <summary>
-        /// Control ListBoxCondicion.
+        /// Control BtnAltaElemento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBoxCondicion;
+        protected global::System.Web.UI.WebControls.Button BtnAltaElemento;
 
         /// <summary>
-        /// Control BtnAlta.
+        /// Control BtnModificarElemento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAlta;
+        protected global::System.Web.UI.WebControls.Button BtnModificarElemento;
 
         /// <summary>
-        /// Control BtnModificar.
+        /// Control BtnBajaElemento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnModificar;
-
-        /// <summary>
-        /// Control BtnBaja.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBaja;
+        protected global::System.Web.UI.WebControls.Button BtnBajaElemento;
 
         /// <summary>
         /// Control grillaPublicaciones.

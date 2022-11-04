@@ -44,7 +44,7 @@ namespace BLL
             catch (Exception exx)
             {
 
-                throw;
+                throw exx;
             }
         }
 
@@ -70,7 +70,7 @@ namespace DAL
             parameters.Add(DAO.CrearParametro("@telefono", cliente.Telefono));
             parameters.Add(DAO.CrearParametro("@direccion", cliente.Direccion));
             parameters.Add(DAO.CrearParametro("@email", cliente.email));
-            parameters.Add(DAO.CrearParametro("@cuit", cliente.CUIT));
+            parameters.Add(DAO.CrearParametro("@cuit", cliente.CUIT.ToString()));
             DAO.Escribir("ModificarCliente", parameters);
             DAO.Cerrar();
 

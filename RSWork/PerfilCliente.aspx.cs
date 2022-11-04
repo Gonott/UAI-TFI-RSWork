@@ -91,11 +91,11 @@ namespace RSWork
                 empBLL.baja(emptemporal, (Cliente)Session["Cliente"]);
                 EnlazarEmpleados();
                 LimpiarTextEmpleados();
-                Response.Write("<script>alert('El Cliente fue dado de baja'); window.location='PerfilCliente.aspx'</script>");
+                Response.Write("<script>alert('El Empleado fue dado de baja'); window.location='PerfilCliente.aspx'</script>");
             }
             catch (Exception)
             {
-                Response.Write("<script>alert('El Cliente no pudo ser dado de baja'); window.location='PerfilCliente.aspx'</script>");
+                Response.Write("<script>alert('El Empleado no pudo ser dado de baja'); window.location='PerfilCliente.aspx'</script>");
                 throw;
             }
         }

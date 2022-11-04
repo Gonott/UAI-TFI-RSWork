@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ABMPublicaciones.aspx" />
+    <Content Include="BusquedaPublicaciones.aspx" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\PerfilCliente.css" />
     <Content Include="Content\PerfilProveedor.css" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusquedaPublicaciones.aspx.cs">
+      <DependentUpon>BusquedaPublicaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusquedaPublicaciones.aspx.designer.cs">
+      <DependentUpon>BusquedaPublicaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ContratoPreliminar.aspx.cs">
       <DependentUpon>ContratoPreliminar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

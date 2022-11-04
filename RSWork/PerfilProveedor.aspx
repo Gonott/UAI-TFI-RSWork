@@ -35,7 +35,7 @@
 
     <article class="contenedor" id="elementos">
         <h2>Mis elementos:</h2>
-        <div id="4">
+        <div id="div4">
             <asp:GridView ID="grillaElementos"  runat="server" OnRowCommand="Grilla_RowCommand" AutoGenerateColumns="False" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Codigo" HeaderText="Codigo"  />
@@ -46,29 +46,50 @@
                     <asp:ButtonField CommandName="btnSeleccionarElemento" Text="Seleccionar" />
                 </Columns>
             </asp:GridView>
+            <br />
+            <br />
         </div>
 
 
-        <div id="5">
 
+        <div id="div5">
+
+            <label>Nombre: </label>
             <asp:TextBox ID="TextBoxNombre" runat="server"></asp:TextBox>
-            <asp:TextBox ID="TextBoxDescripcion" runat="server"></asp:TextBox>.
-            <asp:TextBox ID="TextBoxPrecio" runat="server"></asp:TextBox>
-            <asp:ListBox ID="ListBoxTipo" runat="server">
-                <asp:ListItem Text="text" />
-            </asp:ListBox>
-            <asp:TextBox ID="TextBoxCaracteristicas" runat="server"></asp:TextBox>
-            <asp:ListBox ID="ListBoxCondicion" runat="server">
-                <asp:ListItem Text="Nuevo" />
-                <asp:ListItem Text="Usado" />
-            </asp:ListBox>
+            <label>Descripción: </label>
+            <asp:TextBox ID="TextBoxDescripcion" runat="server" Width="325px"></asp:TextBox>
+            <label>Precio: </label><asp:TextBox ID="TextBoxPrecio" runat="server"></asp:TextBox>
+
+
+            <div id="div6">
+                <label>Tipo:</label>
+                <asp:DropDownList ID="DropDownTipo" runat="server">
+                <asp:ListItem Text="Notebook" />
+                    <asp:ListItem Text="Desktop" />
+                    <asp:ListItem Text="Monitor" />
+                    <asp:ListItem Text="Periferico" />
+                    <asp:ListItem Text="Escritorio" />
+                    <asp:ListItem Text="Silla" />
+                </asp:DropDownList>
+                <label>Condición:</label>
+                <asp:DropDownList ID="DropDownCondicion" runat="server">
+                    <asp:ListItem Text="Nuevo" />
+                    <asp:ListItem Text="Usado" />
+                </asp:DropDownList>
+                <label>Características:</label>
+                <asp:TextBox ID="TextBoxCaracteristicas" runat="server" Height="70px" Rows="10" Width="503px"></asp:TextBox>
+
+            </div>
+            
+
+
         </div>
 
 
-        <div id="6">
-            <asp:Button ID="BtnAlta" CssClass="tresbotones" runat="server" Text="Alta" OnClick="BtnAlta_Click" />
-            <asp:Button ID="BtnModificar" CssClass="tresbotones" runat="server" Text="Modificar" OnClick="BtnModificar_Click" />
-            <asp:Button ID="BtnBaja" CssClass="tresbotones" runat="server" Text="Baja" OnClick="BtnBaja_Click"  />
+        <div id="div7">
+            <asp:Button ID="BtnAltaElemento" CssClass="tresbotones" runat="server" Text="Alta" OnClick="BtnAlta_Click" />
+            <asp:Button ID="BtnModificarElemento" CssClass="tresbotones" runat="server" Text="Modificar" OnClick="BtnModificar_Click" />
+            <asp:Button ID="BtnBajaElemento" CssClass="tresbotones" runat="server" Text="Baja" OnClick="BtnBaja_Click"  />
         </div>
 
 
@@ -76,9 +97,9 @@
 
 
     <article class ="contenedor" id="publicaciones">
-
-
-        <div id="7">
+        
+        <h2>Mis Publicaciones:</h2>
+        <div id="div8">
             <asp:GridView ID="grillaPublicaciones"  runat="server" OnRowCommand="GrillaPublicaciones_RowCommand" AutoGenerateColumns="False" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Id"  />
@@ -90,7 +111,7 @@
         </div>
 
 
-        <div id="8">
+        <div id="div9">
             <asp:Image ID="ImagenPublicacion" runat="server" />
             <asp:TextBox ID="TextBoxNomPub" runat="server"></asp:TextBox>
             <asp:TextBox ID="TextBoxCantPub" runat="server"></asp:TextBox>
@@ -102,12 +123,10 @@
        </div>
 
 
-        <div id="9">
+        <div id="div10">
             <asp:Button ID="BtnAltaPublicacion" CssClass="tresbotones" runat="server" Text="Alta" OnClick="BtnAltaPub_Click" />
             <asp:Button ID="BtnModificarPublicacion" CssClass="tresbotones" runat="server" Text="Modificar" OnClick="BtnModificarPub_Click" />
             <asp:Button ID="BtnBajaPublicacion" CssClass="tresbotones" runat="server" Text="Baja" OnClick="BtnBajaPub_Click"  />
-
-
         </div>
 
 
@@ -119,12 +138,12 @@
 
     <article class="contenedor" id="contractcontainer">
         
-        <div id="div4">
+        <div id="div11">
             <h2>Mis Contratos</h2>
             <label>Mis Contratos Activos</label><br />
                                                
         </div>
-        <div id="div5">
+        <div id="div12">
             <label>Contrato</label>
         </div>
 

@@ -195,6 +195,24 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.Image ImagenPublicacion;
 
         /// <summary>
+        /// Control FileUploadImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadImagen;
+
+        /// <summary>
+        /// Control LabelIDPub.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelIDPub;
+
+        /// <summary>
         /// Control TextBoxNomPub.
         /// </summary>
         /// <remarks>
@@ -222,22 +240,13 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.TextBox TextBoxResumenPub;
 
         /// <summary>
-        /// Control TextBoxElemento.
+        /// Control DropDownElementos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxElemento;
-
-        /// <summary>
-        /// Control FileUpload1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownElementos;
 
         /// <summary>
         /// Control BtnAltaPublicacion.

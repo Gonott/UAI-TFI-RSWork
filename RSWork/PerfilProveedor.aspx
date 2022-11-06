@@ -105,6 +105,7 @@
                     <asp:BoundField DataField="Id" HeaderText="Id"  />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Resumen" HeaderText="Resumen" />
                     <asp:ButtonField CommandName="btnSeleccionarPublicacion" Text="Seleccionar" />
                 </Columns>
             </asp:GridView>
@@ -112,12 +113,25 @@
 
 
         <div id="div9">
-            <asp:Image ID="ImagenPublicacion" runat="server" />
+            <label>Imagen </label>
+            <asp:Image ID="ImagenPublicacion" runat="server" /><br />
+            <label>Cambiar Imagen</label>
+            
+            <asp:FileUpload ID="FileUploadImagen" runat="server" />
+            <br />
+            <asp:Label ID="LabelIDPub" runat="server" Text="" Enabled ="false"></asp:Label>
+            <label>Nombre de la Publicacion</label>
             <asp:TextBox ID="TextBoxNomPub" runat="server"></asp:TextBox>
+            <label>Cantidad en la publicacion</label>
             <asp:TextBox ID="TextBoxCantPub" runat="server"></asp:TextBox>
+            <br />
+            <label>Resumen</label>
             <asp:TextBox ID="TextBoxResumenPub" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
-            <asp:TextBox runat="server" ID="TextBoxElemento"></asp:TextBox>
-            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <label>Elemento Asignado</label>
+            <asp:DropDownList Id="DropDownElementos" runat="server" Height="18px" Width="231px">
+                <asp:ListItem></asp:ListItem>
+            </asp:DropDownList>
+            
 
 
        </div>

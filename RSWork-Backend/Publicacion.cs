@@ -115,6 +115,19 @@ namespace BLL
             }
         }
 
+        public Publicacion Seleccionar(int idpub)
+        {
+            try
+            {
+                return mapper.Seleccionar(idpub);
+            }
+            catch (Exception exep)
+            {
+
+                throw exep;
+            }
+        }
+
     }
     
 }
@@ -128,7 +141,6 @@ namespace DAL
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
 
-            parameters.Add(DAO.CrearParametro("@id", publicacion.Id));
             parameters.Add(DAO.CrearParametro("@cantidad", publicacion.Cantidad));
             parameters.Add(DAO.CrearParametro("@nombre", publicacion.Nombre));
             parameters.Add(DAO.CrearParametro("@imagen", publicacion.Imagen));
@@ -155,16 +167,20 @@ namespace DAL
         {
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-
             parameters.Add(DAO.CrearParametro("@id", publicacion.Id));
             parameters.Add(DAO.CrearParametro("@cantidad", publicacion.Cantidad));
             parameters.Add(DAO.CrearParametro("@nombre", publicacion.Nombre));
-            parameters.Add(DAO.CrearParametro("@imagen", publicacion.Imagen));
             parameters.Add(DAO.CrearParametro("@resumen", publicacion.Resumen));
             parameters.Add(DAO.CrearParametro("@codproveedor", publicacion.codProveedor));
             parameters.Add(DAO.CrearParametro("@codelemento", publicacion.codElemento));
             DAO.Escribir("ModificarPublicacion", parameters);
-
+            if (publicacion.Imagen != "" )
+            {
+                parameters.Clear();
+                parameters.Add(DAO.CrearParametro("@id", publicacion.Id));
+                parameters.Add(DAO.CrearParametro("@imagen", publicacion.Imagen));
+                DAO.Escribir("CambiarImagenPublicacion");
+            }
             DAO.Cerrar();
         }
 
@@ -174,7 +190,7 @@ namespace DAL
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
             parameters.Add(DAO.CrearParametro("@codigoproveedor", proveedor.CodigoProveedor));
-            DataTable tabla = DAO.LeerConParametros("ListarPublicacionesProveedor", parameters); 
+            DataTable tabla = DAO.LeerConParametros("ListarPublicacionesProveedor", parameters);
             DAO.Cerrar();
 
             foreach (DataRow registro in tabla.Rows)
@@ -199,7 +215,7 @@ namespace DAL
             List<Publicacion> publicaciones = new List<Publicacion>();
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-            DataTable tabla = DAO.Leer("ListarPublicaciones", parameters); 
+            DataTable tabla = DAO.Leer("ListarPublicaciones", parameters);
 
             DAO.Cerrar();
 
@@ -217,7 +233,36 @@ namespace DAL
 
             }
             return publicaciones;
+        } 
+
+        public Publicacion Seleccionar(int idpublicacion)
+        {
+
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            DAO.Abrir();
+            List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+            parameters.Add(DAO.CrearParametro("@idpublicacion",idpublicacion));
+            DataTable tabla = DAO.LeerConParametros("SeleccionarPublicacion", parameters);
+            DAO.Cerrar();
+
+            foreach (DataRow registro in tabla.Rows)
+            {
+                Publicacion publicacion = new Publicacion();
+                publicacion.Id = int.Parse(registro["Id"].ToString());
+                publicacion.Cantidad = int.Parse(registro["Cantidad"].ToString());
+                publicacion.Nombre = registro["Nombre"].ToString();
+                publicacion.Imagen = registro["Imagen"].ToString();
+                publicacion.Resumen = registro["Resumen"].ToString();
+                publicacion.codElemento = int.Parse(registro["codElemento"].ToString());
+                publicacion.codProveedor = int.Parse(registro["codProveedor"].ToString());
+                publicaciones.Add(publicacion);
+            }
+            return publicaciones[0];
         }
+            
+
+
+        
 
     }
 

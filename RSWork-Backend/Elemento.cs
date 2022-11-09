@@ -14,7 +14,7 @@ namespace BE
 
         public string Descripción { get; set; }
 
-        public string Nombre { get; set; }
+        public string NombreElemento { get; set; }
 
         public int Código { get; set; }
 
@@ -83,7 +83,7 @@ namespace BLL
         {
             try
             {
-                mapper.baja(elemento, proveedor);
+               mapper.baja(elemento, proveedor);
             }
             catch (Exception)
             {
@@ -146,7 +146,7 @@ namespace DAL
             parameters.Add(DAO.CrearParametro("@caracteristicas",elemento.Caracteristicas));
             parameters.Add(DAO.CrearParametro("@condicion",elemento.Condición));
             parameters.Add(DAO.CrearParametro("@descripcion", elemento.Descripción));
-            parameters.Add(DAO.CrearParametro("@nombre",elemento.Nombre));
+            parameters.Add(DAO.CrearParametro("@nombre",elemento.NombreElemento));
             parameters.Add(DAO.CrearParametro("@tipo", elemento.Tipo.ToString()));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
             parameters.Add(DAO.CrearParametro("@cantidad", elemento.stockProveedor));
@@ -175,7 +175,7 @@ namespace DAL
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
             parameters.Add(DAO.CrearParametro("@codigo", elemento.Código));
             parameters.Add(DAO.CrearParametro("@caracteristicas", elemento.Caracteristicas));
-            parameters.Add(DAO.CrearParametro("@nombre", elemento.Nombre));
+            parameters.Add(DAO.CrearParametro("@nombre", elemento.NombreElemento));
             parameters.Add(DAO.CrearParametro("@tipo", elemento.Tipo.ToString()));
             parameters.Add(DAO.CrearParametro("@descripcion", elemento.Descripción));
             parameters.Add(DAO.CrearParametro("@precio", elemento.Precio));
@@ -202,7 +202,7 @@ namespace DAL
                 elemento.Caracteristicas =registro["Caracteristicas"].ToString();
                 elemento.Condición =registro["Condicion"].ToString();
                 elemento.Descripción=registro["Descripcion"].ToString();
-                elemento.Nombre = registro["Nombre"].ToString();
+                elemento.NombreElemento = registro["Nombre"].ToString();
                 elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
                 switch (registro["Tipo"].ToString())
                 {
@@ -254,7 +254,7 @@ namespace DAL
                 elemento.Caracteristicas = registro["Caracteristicas"].ToString();
                 elemento.Condición = registro["Condicion"].ToString();
                 elemento.Descripción = registro["Descripcion"].ToString();
-                elemento.Nombre = registro["Nombre"].ToString();
+                elemento.NombreElemento = registro["Nombre"].ToString();
                 switch (registro["Tipo"].ToString())
                 {
                     case "Notebook":

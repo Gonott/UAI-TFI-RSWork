@@ -226,7 +226,7 @@ namespace DAL
                 elemento.Caracteristicas = registro["Caracteristicas"].ToString();
                 elemento.Condición = registro["Condicion"].ToString();
                 elemento.Descripción = registro["Descripcion"].ToString();
-                elemento.Nombre = registro["Nombre"].ToString();
+                elemento.NombreElemento = registro["Nombre"].ToString();
                 elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
                 switch (registro["Tipo"].ToString())
                 {

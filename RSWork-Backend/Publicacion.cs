@@ -28,6 +28,15 @@ namespace BE
         public int codProveedor { get; set; }
 
 
+        /// <summary>
+        /// Las siguientes son para poder desplegar el detalle de las publicaciones
+        /// en cuanto a las caracteristicas del elemento que tienen adentro.
+        /// </summary>
+
+        public string Tipo { get; set; }
+        public string Caracteristicas { get; set; }
+        public string Condición { get; set; }
+        public string Precio { get; set; }
 
     }
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BE;
+using BLL;
 
 namespace RSWork
 {
@@ -22,9 +24,23 @@ namespace RSWork
                 Response.Redirect("Login.aspx");
             }
             if(this.Session["Usuario"].ToString() != null)
-                //(Request.Cookies["Usuario"]!= null)
             {
-                Response.Redirect("PerfilProveedor.aspx");
+                Usuario usu = new Usuario();
+                usu = (Usuario)Session["Usuario"];
+                if (usu.empresa.GetType() == typeof(Cliente))
+                {
+                    Response.Redirect("PerfilCliente.aspx");
+                    //llevar perfil cliente
+                }
+                if(usu.empresa.GetType()==typeof(Proveedor))
+                {
+                    //llevar a perfil proveedor
+                    Response.Redirect("PerfilProveedor.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Ha ocurrido un error, contacta a soporte')</script>");
+                }
             }
         }
 

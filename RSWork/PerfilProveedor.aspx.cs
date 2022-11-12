@@ -178,7 +178,7 @@ namespace RSWork
                 Elemento elemTemp = new Elemento();
                 elemTemp.NombreElemento = TextBoxNombre.Text;
                 elemTemp.Descripción = TextBoxDescripcion.Text;
-                elemTemp.Precio = decimal.Parse(TextBoxPrecio.Text);
+                elemTemp.Precio = float.Parse(TextBoxPrecio.Text);
                 elemTemp.Tipo = (Elemento.TipoElemento)System.Enum.Parse(typeof(Elemento.TipoElemento), DropDownTipo.SelectedItem.Text);
                 elemTemp.Condición = DropDownCondicion.SelectedItem.Text;
                 elemTemp.Caracteristicas = TextBoxCaracteristicas.Text;
@@ -201,7 +201,7 @@ namespace RSWork
                 elemTemp = (Elemento)Session["ElemTemp"];
                 elemTemp.NombreElemento = TextBoxNombre.Text;
                 elemTemp.Descripción = TextBoxDescripcion.Text;
-                elemTemp.Precio = decimal.Parse(TextBoxPrecio.Text);
+                elemTemp.Precio = float.Parse(TextBoxPrecio.Text);
                 elemTemp.Tipo = (Elemento.TipoElemento)System.Enum.Parse(typeof(Elemento.TipoElemento), DropDownTipo.SelectedItem.Text);
                 elemTemp.Condición = DropDownCondicion.SelectedItem.Text;
                 elemTemp.Caracteristicas = TextBoxCaracteristicas.Text;
@@ -223,7 +223,7 @@ namespace RSWork
                 elemTemp = (Elemento)Session["ElemTemp"];
                 elemTemp.NombreElemento = TextBoxNombre.Text;
                 elemTemp.Descripción = TextBoxDescripcion.Text;
-                elemTemp.Precio = decimal.Parse(TextBoxPrecio.Text);
+                elemTemp.Precio = float.Parse(TextBoxPrecio.Text);
                 elemTemp.Tipo = (Elemento.TipoElemento)System.Enum.Parse(typeof(Elemento.TipoElemento), DropDownTipo.SelectedItem.Text);
                 elemTemp.Condición = DropDownCondicion.SelectedItem.Text;
                 elemTemp.Caracteristicas = TextBoxCaracteristicas.Text;

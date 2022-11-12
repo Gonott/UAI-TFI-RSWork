@@ -132,6 +132,14 @@ namespace DAL
             return par;
         }
 
+        public static IDbDataParameter CrearParametro(string nom, bool valor)
+        {
+            SqlParameter par = new SqlParameter(nom, valor);
+            par.DbType = DbType.Boolean;
+            return par;
+        }
+
+
         #endregion
 
 

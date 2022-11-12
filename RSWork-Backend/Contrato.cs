@@ -43,6 +43,7 @@ namespace BLL
     public class ContratoBLL
     {
         ContratoDAL mapper = new ContratoDAL();
+        PagoBLL pagobll = new PagoBLL();
 
         public  List<Contrato> ContratosCliente(Cliente cliente)
         {
@@ -57,11 +58,14 @@ namespace BLL
             
         }
 
-        public List<Contrato> ContratosProveedor(Proveedor proveedor)
+        public List<Contrato> ListarContratosProveedor(Proveedor proveedor)
         {
             try
             {
                 return mapper.ListarContratosProveedor(proveedor);
+
+               
+                
             }
             catch (Exception ex)
             {
@@ -70,12 +74,113 @@ namespace BLL
             }
         }
 
-    }
 
-    ////asignar los elementos al pago
-    ///luego toca calcular el plan de pagos.
-    ///luego asignar los pagos.
-    ///luego pegarle a dal. 
+        public float CalcularValorElementoTiempo(Contrato contrato, string periodo, float precioElemento)
+        {
+            float precioPeriodo = 0;
+            TimeSpan ts = contrato.FechaFinal - contrato.FechaInicio;
+            switch (periodo)
+            {
+                case "Días": //calcula el precio de un elemento por la cantidad de días.
+                    precioPeriodo = (precioElemento / 30) * ts.Days;
+                    break;
+                case "Meses": // calcula el precio de un elemento por la cantidad de meses.
+                    precioPeriodo = precioElemento * (ts.Days / 30);
+                    break;
+                case "Años": // calcula el precio de un elemento por la cantidad de años.
+                    precioPeriodo = (precioElemento * 12) * (ts.Days / 365);
+                    break;
+                default:
+                    break;
+            }
+            return precioPeriodo; 
+
+        }
+
+
+        public List<Pago> CalcularPlanPagos(Contrato contrato, string periodo)
+        {
+            List<Pago> pagos = new List<Pago>();
+            TimeSpan ts = contrato.FechaFinal - contrato.FechaInicio;
+            switch (periodo)
+            {
+                case "Días": //calcula las cuotas para un periodo de días..
+                    if (ts.Days <= 30) // si es dias posta, listo un solo pago, devuelvo uno solo.
+                    {
+                        Pago pago = new Pago();
+                        pago.fecha = contrato.FechaFinal;
+                        pago.monto = contrato.Monto;
+                        pago.pagado = false;
+                        pago.hora = "00:00:00";
+                        pagos.Add(pago);
+                    }
+                    break;
+                case "Meses": // calcula los pagos para periodos mensuales.
+                    int cantMeses = (ts.Days / 30);
+                    DateTime fechapago = contrato.FechaInicio.AddDays(30);
+                    for (int i = 0; i < cantMeses; i++)
+                    {
+                        Pago pago = new Pago();
+                        pago.monto = contrato.Monto / cantMeses;
+                        pago.fecha = fechapago;
+                        fechapago = fechapago.AddDays(30);
+                        pago.hora = "00:00:00";
+                        pago.pagado = false;
+                        pagos.Add(pago);
+
+                    }
+                    break;
+                case "Años": // calcula el los pagos para periodos anuales.
+                    int cantAños = (ts.Days / 365);
+                    DateTime fechapagoanual = contrato.FechaInicio.AddDays(365);
+                    for (int i = 0; i < cantAños; i++)
+                    {
+                        Pago pago = new Pago();
+                        pago.monto = contrato.Monto / cantAños;
+                        pago.fecha = fechapagoanual;
+                        if (fechapagoanual.AddDays(365)> contrato.FechaFinal)
+                        {
+                            fechapagoanual = contrato.FechaFinal;
+                        }
+                        else
+                        {
+                            fechapagoanual = fechapagoanual.AddDays(365);
+                        }
+                        pago.hora = "00:00:00";
+                        pago.pagado = false;
+                        pagos.Add(pago);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return pagos;
+
+        }
+
+
+        public void AltaContrato(Contrato contrato) 
+        ///aca se da de alta la cabecera, y una instancia en la tabla intermedia
+        ///ContratoDetalle donde esta la cantidad de elementos de la relación.
+        {
+            try
+            {
+                mapper.AltaContratoCabecera(contrato);
+                mapper.AltaContratoDetalle(contrato);
+                foreach (Pago pago in contrato.pagos)
+                {
+                    pagobll.AltaPagoContrato(pago, contrato);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+    }
     
 
 
@@ -180,26 +285,8 @@ namespace DAL
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
                 parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
                 parameters.Add(DAO.CrearParametro("@nroElemento", item.Código));
+                parameters.Add(DAO.CrearParametro("@cantidad", item.cantidad));
                 DAO.Escribir("AltaContratoDetalle", parameters);
-            }
-            DAO.Cerrar();
-
-        }
-
-
-
-        public void AltaContratoPagos(Contrato contrato)
-        {
-
-            DAO.Abrir();
-            foreach (Pago item in contrato.pagos)
-            {
-                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-                parameters.Add(DAO.CrearParametro("@idContrato", contrato.NumeroContrato));
-                parameters.Add(DAO.CrearParametro("@fecha", item.fecha));
-                parameters.Add(DAO.CrearParametro("@hora", item.hora));
-                parameters.Add(DAO.CrearParametro("@pagado", item.pagado.ToString()));
-                DAO.Escribir("AltaContratoPagos", parameters);
             }
             DAO.Cerrar();
 
@@ -211,7 +298,7 @@ namespace DAL
         {
 
             //llenar los elementos del contrato.
-
+            PagoDAL pagodal = new PagoDAL();
             DAO.Abrir();
             List<IDbDataParameter> parameters = new List<IDbDataParameter>();
             parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
@@ -227,7 +314,6 @@ namespace DAL
                 elemento.Condición = registro["Condicion"].ToString();
                 elemento.Descripción = registro["Descripcion"].ToString();
                 elemento.NombreElemento = registro["Nombre"].ToString();
-                elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
                 switch (registro["Tipo"].ToString())
                 {
                     case "Notebook":
@@ -249,30 +335,31 @@ namespace DAL
                         elemento.Tipo = Elemento.TipoElemento.Silla;
                         break;
                 }
-                elemento.Precio = decimal.Parse(registro["Precio"].ToString());
+                elemento.Precio = float.Parse(registro["Precio"].ToString());
+                elemento.stockProveedor = int.Parse(registro["Cantidad"].ToString());
                 contrato.Elementos.Add(elemento);
 
             }
 
-
+            contrato.pagos = pagodal.ListarPagosContrato(contrato.NumeroContrato);
             ////ahora listar los pagos del contrato.
 
-            List<Pago> pagos = new List<Pago>();
-            DAO.Abrir();
-            List<IDbDataParameter> parameterspay = new List<IDbDataParameter>();
-            parameterspay.Add(DAO.CrearParametro("@idcontrato", contrato.NumeroContrato));
-            DataTable tablacontratos = DAO.LeerConParametros("ListarPagosContrato", parameterspay);
+            //List<Pago> pagos = new List<Pago>();
+            //DAO.Abrir();
+            //List<IDbDataParameter> parameterspay = new List<IDbDataParameter>();
+            //parameterspay.Add(DAO.CrearParametro("@idcontrato", contrato.NumeroContrato));
+            //DataTable tablacontratos = DAO.LeerConParametros("ListarPagosContrato", parameterspay);
 
-            foreach (DataRow registro in tablacontratos.Rows)
-            {
-                Pago pago = new Pago();
-                pago.nroPago = int.Parse(registro["NroPago"].ToString());
-                pago.fecha = DateTime.Parse(registro["Fecha"].ToString()); ;
-                pago.hora = registro["hora"].ToString();
-                pago.pagado= bool.Parse(registro["pagado"].ToString());
-                contrato.pagos.Add(pago);
+            //foreach (DataRow registro in tablacontratos.Rows)
+            //{
+            //    Pago pago = new Pago();
+            //    pago.nroPago = int.Parse(registro["NroPago"].ToString());
+            //    pago.fecha = DateTime.Parse(registro["Fecha"].ToString()); ;
+            //    pago.hora = registro["hora"].ToString();
+            //    pago.pagado= bool.Parse(registro["pagado"].ToString());
+            //    contrato.pagos.Add(pago);
 
-            }
+            //}
 
             return contrato;
 
@@ -286,8 +373,6 @@ namespace DAL
 
 
 
-
-        //Ver el detalle de un contrato - Cargar contrato full.
 
 
   

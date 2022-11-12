@@ -18,7 +18,7 @@ namespace BE
 
         public int Código { get; set; }
 
-        public decimal Precio { get; set; }
+        public float Precio { get; set; }
 
 
         public TipoElemento Tipo { get; set; }
@@ -37,7 +37,7 @@ namespace BE
 
         public int stockProveedor;
 
-
+        public int cantidad;
     }
 
 }
@@ -225,7 +225,7 @@ namespace DAL
                         elemento.Tipo = Elemento.TipoElemento.Silla;
                         break;
                 }
-                elemento.Precio = decimal.Parse(registro["Precio"].ToString());
+                elemento.Precio = float.Parse(registro["Precio"].ToString());
                 elementos.Add(elemento);
 
             }
@@ -276,7 +276,7 @@ namespace DAL
                         elemento.Tipo = Elemento.TipoElemento.Silla;
                         break;
                 }
-                elemento.Precio = decimal.Parse(registro["Precio"].ToString());
+                elemento.Precio = float.Parse(registro["Precio"].ToString());
                 elementos.Add(elemento);
 
             }

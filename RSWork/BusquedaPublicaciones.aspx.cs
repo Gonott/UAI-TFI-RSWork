@@ -76,16 +76,23 @@ namespace RSWork
 
         protected void ContratarButton_Click(object sender, EventArgs e)
         {
+
             Button btn = (Button)sender;
             Publicacion publicacion = new Publicacion();
             publicacion =  publl.Seleccionar(int.Parse(btn.CommandArgument));
+            BLLElemento elembll = new BLLElemento();
+            Elemento elemento = new Elemento();
+            elemento = elembll.Seleccionar(publicacion.codElemento);
+            publicacion.Precio = elemento.Precio.ToString();
+            publicacion.Caracteristicas = elemento.Caracteristicas;
+            publicacion.Condición = elemento.Condición;
+            publicacion.Tipo = elemento.Tipo.ToString();
             Session["PublicacionContratada"] = publicacion;
             Usuario usu = new Usuario();
             usu = (Usuario)Session["Usuario"];
             if (usu.empresa.GetType() == typeof(Cliente))
             {
                 Response.Redirect("ParametrosDelAlquiler.aspx");
-                //llevar perfil cliente
             }
             else
             {

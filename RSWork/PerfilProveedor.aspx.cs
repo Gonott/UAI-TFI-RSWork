@@ -27,6 +27,7 @@ namespace RSWork
                 DropDownTipo.Enabled = true;
                 EnlazarGrillaPublicaciones();
                 LimpiarCamposPublicacion();
+                EnlazarContratos();
             }
 
         }
@@ -454,12 +455,39 @@ namespace RSWork
 
                 Response.Write("<script>alert('" + ex.Message + "')</script>"); 
             }
-           
+          
         }
 
 
 
+
+
         #endregion
+
+        private void EnlazarContratos()
+        {
+            ContratoBLL contratoBLL = new ContratoBLL();
+
+            List<Contrato> contratos = new List<Contrato>();
+            contratos = contratoBLL.ListarContratosProveedor((Proveedor)Session["Proveedor"]);
+
+            GrillaContratos.DataSource = contratos.Select(cont => new
+            {
+                NroContrato = cont.NumeroContrato,
+                CodProveedor = cont.codProveedor,
+                FechaContrato = cont.FechaContrato,
+                FechaInicio = cont.FechaInicio,
+                FechaFin = cont.FechaFinal,
+                Monto = cont.Monto
+
+            });
+
+            GrillaContratos.DataBind();
+
+        }
+
+
+
 
     }
 }

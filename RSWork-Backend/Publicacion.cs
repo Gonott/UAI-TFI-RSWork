@@ -137,6 +137,24 @@ namespace BLL
             }
         }
 
+
+        public List<Publicacion> Filtrar(List<Publicacion> aFiltrar, string texto)
+        {
+
+            List<Publicacion> filtrados = new List<Publicacion>();
+            foreach (Publicacion publicacion in aFiltrar)
+            {
+                if (publicacion.Nombre.Contains(texto) || publicacion.Resumen.Contains(texto)) 
+                {
+                    filtrados.Add(publicacion);
+                }
+
+            }
+            return filtrados;
+
+        }
+
+
     }
     
 }

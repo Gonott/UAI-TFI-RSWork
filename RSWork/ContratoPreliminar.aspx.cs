@@ -73,12 +73,6 @@ namespace RSWork
                 contrato = (Contrato)Session["ContratoFinal"];
                 Publicacion publicacion = new Publicacion();
                 publicacion = (Publicacion)Session["PublicacionContratada"];
-                List<Empleado> empleados = new List<Empleado>();
-                empleados = (List<Empleado>)Session["empleadosSeleccionados"];
-                BLLElemento elmbll = new BLLElemento();
-                Elemento elemento = elmbll.Seleccionar(publicacion.codElemento);
-                elemento.cantidad = empleados.Count();
-                contrato.Elementos.Add(elemento);
                 contratobll.AltaContrato(contrato);
                 Response.Write("<script>alert('Se ha dado de alta el contrato Exitosamente')</script>");
                 Response.Redirect("PerfilCliente.aspx");

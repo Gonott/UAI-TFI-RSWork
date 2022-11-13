@@ -165,8 +165,13 @@ namespace BLL
         {
             try
             {
-                mapper.AltaContratoCabecera(contrato);
-                mapper.AltaContratoDetalle(contrato);
+                mapper.AltaContratoCabecera(contrato);//damos de alta la cabecera
+                //luego por cada item damos de alta el item.
+                foreach (Elemento item in contrato.Elementos)
+                {
+                    mapper.AltaContratoDetalle(contrato,item);
+                }
+                //por cada pago, damos de alta el pago.
                 foreach (Pago pago in contrato.pagos)
                 {
                     pagobll.AltaPagoContrato(pago, contrato);
@@ -179,6 +184,12 @@ namespace BLL
             }
         }
 
+
+
+        public void ConstruirContrato()
+        {
+
+        }
 
     }
     
@@ -240,8 +251,8 @@ namespace DAL
                 Contrato contrato = new Contrato();
                 contrato.NumeroContrato = int.Parse(registro["NroContrato"].ToString());
                 contrato.cliente = cliente;
-                contrato.codProveedor= int.Parse(registro["CodProveedor"].ToString()); ;
-                contrato.FechaInicio = DateTime.Parse(registro["FechaIncio"].ToString());
+                contrato.codProveedor = int.Parse(registro["CodProveedor"].ToString());
+                contrato.FechaInicio = DateTime.Parse(registro["FechaInicio"].ToString());
                 contrato.FechaFinal = DateTime.Parse(registro["FechaFinal"].ToString());
                 contrato.Monto = float.Parse(registro["Monto"].ToString());
                 contrato.FechaContrato = DateTime.Parse(registro["FechaContrato"].ToString());
@@ -277,17 +288,14 @@ namespace DAL
         }
 
 
-        public void AltaContratoDetalle(Contrato contrato)
+        public void AltaContratoDetalle(Contrato contrato, Elemento elemento)
         {
             DAO.Abrir();
-            foreach (Elemento item in contrato.Elementos)
-            {
-                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-                parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
-                parameters.Add(DAO.CrearParametro("@nroElemento", item.Código));
-                parameters.Add(DAO.CrearParametro("@cantidad", item.cantidad));
-                DAO.Escribir("AltaContratoDetalle", parameters);
-            }
+            List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+            parameters.Add(DAO.CrearParametro("@nroContrato", contrato.NumeroContrato));
+            parameters.Add(DAO.CrearParametro("@nroElemento", elemento.Código));
+            parameters.Add(DAO.CrearParametro("@cantidad", elemento.cantidad));
+            DAO.Escribir("AltaContratoDetalle", parameters);
             DAO.Cerrar();
 
         }

@@ -49,5 +49,32 @@ namespace RSWork
             Response.Redirect("Default.aspx");
         }
 
+        protected void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["TextoBuscar"] = TxtBuscar.Text;
+                Response.Redirect("BusquedaPublicaciones.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('Oh no!, ha ocurrido un error: " + ex.Message + "')</script>");
+            }
+
+        }
+
+        protected void logohomebutn_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('Oh no!, ha ocurrido un error: " + ex.Message + "')</script>");
+            }
+        }
     }
 }

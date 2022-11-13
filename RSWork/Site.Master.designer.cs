@@ -15,13 +15,22 @@ namespace RSWork
     {
 
         /// <summary>
-        /// Control logohome.
+        /// Control logohomebutn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image logohome;
+        protected global::System.Web.UI.WebControls.ImageButton logohomebutn;
+
+        /// <summary>
+        /// Control TxtBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtBuscar;
 
         /// <summary>
         /// Control BtnBuscar.

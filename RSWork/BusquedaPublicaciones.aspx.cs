@@ -20,7 +20,15 @@ namespace RSWork
         {
             if (!Page.IsPostBack)
             {
-                CargarTodas();
+                if (Session["TextoBuscar"].ToString() == "") //aca si esta vacio.
+                {
+                    CargarTodas();
+                }
+                if (Session["TextoBuscar"].ToString()!= "") //aca si no está vacio.
+                {
+                    CargarFiltradas(Session["TextoBuscar"].ToString());
+                }
+                
             }
         }
 
@@ -103,8 +111,13 @@ namespace RSWork
         }
 
 
+        private void CargarFiltradas(string texto)
+        {
+            publicaciones = publl.Filtrar(publl.ListarTodas(),texto);
+            DataListPublicaciones.DataSource = publicaciones;
+            DataListPublicaciones.DataBind();
 
-
+        }
 
     }
 }

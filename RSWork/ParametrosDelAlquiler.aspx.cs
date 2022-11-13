@@ -55,54 +55,54 @@ namespace RSWork
 
         public Contrato ConstruirContrato()
         {
-           
-                Publicacion publicacionTemporal = new Publicacion();
-                Contrato contrato = new Contrato();
-                publicacionTemporal = (Publicacion)Session["PublicacionContratada"];
-                elemento = elementobll.Seleccionar(publicacionTemporal.codElemento);
-                empleadosSeleccionados = (List<Empleado>)Session["empleadosSeleccionados"];
-                List<Elemento> elementos = new List<Elemento>();
-                for (int i = 0; i < empleadosSeleccionados.Count; i++)
-                {
-                    Elemento unElemento = new Elemento();
-                    unElemento = elemento;
-                    elementos.Add(unElemento);
-                    //publicacionTemporal.Cantidad += 1;
-
-                }
-                contrato.Elementos = elementos;
-                contrato.FechaContrato = System.DateTime.Now;
-                contrato.FechaInicio = CalendarioInicio.SelectedDate;
-                Cliente cliente = new Cliente();
-                cliente = (Cliente)Session["Cliente"];
-                contrato.codCliente = cliente.CodigoCliente;
-                contrato.codProveedor = publicacionTemporal.codProveedor;
-                int cantidadTiempo = int.Parse(TxtBoxCantidadTiempo.Text);
-                float valorElementoTiempo = 0;
-                switch (RadioButtonList1.SelectedItem.Text)
-                {
-                    case "Días": //seleccionó dias.
-                        contrato.FechaFinal = contrato.FechaInicio.AddDays(cantidadTiempo);
-                        valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Días", elemento.Precio);
-                        contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
-                        contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Días");
-                        break;
-                    case "Meses":
-                        contrato.FechaFinal = contrato.FechaInicio.AddMonths(cantidadTiempo);
-                        valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Meses", elemento.Precio);
-                        contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
-                        contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Meses");
-                        break;
-                    case "Años":
-                        contrato.FechaFinal = contrato.FechaInicio.AddYears(cantidadTiempo);
-                        valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Años", elemento.Precio);
-                        contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
-                        contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Años");
-                        break;
-                    default:
-                        break;
-                }
-                return contrato;
+            Random generator = new Random();
+            int r = generator.Next(0, 1000000);
+            Publicacion publicacionTemporal = new Publicacion();
+            Contrato contrato = new Contrato();
+            contrato.NumeroContrato = r;
+            publicacionTemporal = (Publicacion)Session["PublicacionContratada"];
+            elemento = elementobll.Seleccionar(publicacionTemporal.codElemento);
+            empleadosSeleccionados = (List<Empleado>)Session["empleadosSeleccionados"];
+            ///Para esta ocasión se toma un solo elemento en la lista cuya cantidad va a ser igual
+            ///a la cantidad de empleados seleccionados para el bien. 
+            List<Elemento> elementos = new List<Elemento>();
+            Elemento unElemento = new Elemento();
+            unElemento = elemento;
+            unElemento.cantidad = empleadosSeleccionados.Count();
+            elementos.Add(unElemento);
+            contrato.Elementos = elementos;
+            contrato.FechaContrato = System.DateTime.Now;
+            contrato.FechaInicio = CalendarioInicio.SelectedDate;
+            Cliente cliente = new Cliente();
+            cliente = (Cliente)Session["Cliente"];
+            contrato.codCliente = cliente.CodigoCliente;
+            contrato.codProveedor = publicacionTemporal.codProveedor;
+            int cantidadTiempo = int.Parse(TxtBoxCantidadTiempo.Text);
+            float valorElementoTiempo = 0;
+            switch (RadioButtonList1.SelectedItem.Text)
+            {
+                case "Días": //seleccionó dias.
+                    contrato.FechaFinal = contrato.FechaInicio.AddDays(cantidadTiempo);
+                    valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Días", elemento.Precio);
+                    contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
+                    contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Días");
+                    break;
+                case "Meses":
+                    contrato.FechaFinal = contrato.FechaInicio.AddMonths(cantidadTiempo);
+                    valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Meses", elemento.Precio);
+                    contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
+                    contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Meses");
+                    break;
+                case "Años":
+                    contrato.FechaFinal = contrato.FechaInicio.AddYears(cantidadTiempo);
+                    valorElementoTiempo = contratoBll.CalcularValorElementoTiempo(contrato, "Años", elemento.Precio);
+                    contrato.Monto = valorElementoTiempo * empleadosSeleccionados.Count();
+                    contrato.pagos = contratoBll.CalcularPlanPagos(contrato, "Años");
+                    break;
+                default:
+                    break;
+            }
+            return contrato;
             
 
 

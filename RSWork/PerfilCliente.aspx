@@ -28,6 +28,7 @@
              </div>
 
         <div id="div3">
+            <asp:Button ID="CerrarSesionBtn" runat="server" Text="Cerrar Sesion" OnClick="CerrarSesionBtn_Click" />
             <asp:Button ID="ModificarBtn"  runat="server" Text="Modificar" OnClick="ModificarBtn_Click" /> 
         </div>
     </article>

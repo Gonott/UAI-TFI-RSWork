@@ -225,7 +225,7 @@ namespace DAL
                 contrato.NumeroContrato = int.Parse(registro["NroContrato"].ToString());
                 contrato.proveedor = proveedor;
                 contrato.codCliente = int.Parse(registro["CodCliente"].ToString()); ;
-                contrato.FechaInicio = DateTime.Parse(registro["FechaIncio"].ToString())  ;
+                contrato.FechaInicio = DateTime.Parse(registro["FechaInicio"].ToString())  ;
                 contrato.FechaFinal = DateTime.Parse(registro["FechaFinal"].ToString())  ;
                 contrato.Monto= float.Parse(registro["Monto"].ToString());
                 contrato.FechaContrato = DateTime.Parse(registro["FechaContrato"].ToString());

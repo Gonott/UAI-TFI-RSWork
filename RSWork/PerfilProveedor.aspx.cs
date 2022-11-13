@@ -486,8 +486,18 @@ namespace RSWork
 
         }
 
+        protected void CerrarSesionBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session.Clear();
+                Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
 
-
-
+                Response.Write("<script>alert('Ha ocurrido un error: " + ex.Message + "'); window.location='PerfilCliente.aspx'</script>");
+            }
+        }
     }
 }

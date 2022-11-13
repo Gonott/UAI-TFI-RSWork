@@ -78,6 +78,15 @@ namespace RSWork
         protected global::System.Web.UI.WebControls.TextBox txtboxEmail;
 
         /// <summary>
+        /// Control CerrarSesionBtn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CerrarSesionBtn;
+
+        /// <summary>
         /// Control ModificarBtn.
         /// </summary>
         /// <remarks>

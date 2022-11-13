@@ -96,7 +96,7 @@ namespace RSWork
             catch (Exception)
             {
                 Response.Write("<script>alert('El Empleado no pudo ser dado de baja'); window.location='PerfilCliente.aspx'</script>");
-                throw;
+                
             }
         }
 
@@ -235,6 +235,21 @@ namespace RSWork
         protected void GrillaContratos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void CerrarSesionBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session.Clear();
+                Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('Ha ocurrido un error: " + ex.Message + "'); window.location='PerfilCliente.aspx'</script>");
+            }
+            
         }
     }
 }

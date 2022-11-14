@@ -13,5 +13,18 @@ namespace RSWork
         {
 
         }
+
+        protected void DashboardBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("Dashboard.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+        }
     }
 }

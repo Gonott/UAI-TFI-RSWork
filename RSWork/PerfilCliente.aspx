@@ -92,7 +92,6 @@
                      <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
                      <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
                      <asp:BoundField DataField ="Monto" HeaderText ="Monto" />
-                     <asp:ButtonField CommandName="btnVerContrato" Text="Ver" />
                  </Columns>
             </asp:GridView>
             <br />

@@ -5,8 +5,10 @@
 
     <link href="Content/BusquedaElementos.css" rel="stylesheet" />
 
-    <div class="contenedor">
-        <asp:DataList ID="DataListPublicaciones" runat="server" RepeatDirection="Horizontal" Width="378px" RepeatColumns="3" OnSelectedIndexChanged="DataListPublicaciones_SelectedIndexChanged">
+    <article class="contenedor">
+
+        <div id="publicaciones">
+        <asp:DataList ID="DataListPublicaciones"  runat="server" RepeatDirection="Horizontal" Width="500px" RepeatColumns="3" OnSelectedIndexChanged="DataListPublicaciones_SelectedIndexChanged">
             <ItemTemplate >
                 <table class="itempub">
                     <tr>
@@ -16,7 +18,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Image ID="ImagenPublicacion" runat="server" ImageUrl='<%# Eval("Imagen") %>' />
+                            <asp:Image ID="ImagenPublicacion" Width="300px" Height="220px" runat="server" ImageUrl='<%# Eval("Imagen") %>' />
                         </td>
                     </tr>
                     <tr>
@@ -32,12 +34,12 @@
                 </table>
             </ItemTemplate>
         </asp:DataList>
+        </div>
+
+
         
-
-    </div>
-
-    <aside class="contenedor">
-        <asp:DataList runat="server" ID="AsideDataList" RepeatDirection="Vertical" Width="149px">
+    <div id="detallepublicacion">
+        <asp:DataList runat="server" ID="AsideDataList" RepeatDirection="Vertical" Width="149px" >
             <ItemTemplate>
                 <table>
                     <tr>
@@ -52,7 +54,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Image ID="ImageAsidePublicacion" runat="server" ImageUrl='<%# Eval("Imagen") %>' />
+                            <asp:Image ID="ImageAsidePublicacion" Width="230px" Height="200px" runat="server" ImageUrl='<%# Eval("Imagen") %>' />
                         </td>
                     </tr>
                     <tr>
@@ -93,7 +95,10 @@
                 </table>
             </ItemTemplate>
         </asp:DataList>
-    </aside>
+    </div>
+
+
+    </article>
 
 
 

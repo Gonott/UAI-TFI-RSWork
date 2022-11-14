@@ -26,12 +26,21 @@ namespace RSWork
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!this.IsPostBack)
             {
-                empleados = empBLL.ListarEmpleados((Cliente)Session["Cliente"]);
-                EnlazarEmpleados(empleados);
-                LlenarDatosPublicacionElemento();
-                //cargar cosas
+                if (Session["Cliente"] != null)
+                {
+
+                    empleados = empBLL.ListarEmpleados((Cliente)Session["Cliente"]);
+                    EnlazarEmpleados(empleados);
+                    LlenarDatosPublicacionElemento();
+
+                }//cargar cosas
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                }
             }
 
         }

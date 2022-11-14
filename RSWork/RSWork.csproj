@@ -121,8 +121,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ABMPublicaciones.aspx" />
     <Content Include="BusquedaPublicaciones.aspx" />
+    <Content Include="Content\BusquedaElementos.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\PerfilCliente.css" />
     <Content Include="Content\PerfilProveedor.css" />
@@ -177,13 +177,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABMPublicaciones.aspx.cs">
-      <DependentUpon>ABMPublicaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ABMPublicaciones.aspx.designer.cs">
-      <DependentUpon>ABMPublicaciones.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusquedaPublicaciones.aspx.cs">

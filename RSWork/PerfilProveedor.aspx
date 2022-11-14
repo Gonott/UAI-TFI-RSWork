@@ -150,30 +150,24 @@
 
     </article>
 
- <article class="contenedor" id="contractcontainer">
+    <article class="contenedor" id="contractcontainer">
 
         <div id="div11">
             <h2>Mis Contratos</h2>
-            <label>Mis Contratos Activos</label><br />
-
-            <asp:GridView ID="GrillaContratos" runat="server"  AutoGenerateColumns="False" Width="100%">
-                 <Columns>
-                     <asp:BoundField DataField="NroContrato" HeaderText="Nro Contrato"  />
-                     <asp:BoundField DataField="CodProveedor" HeaderText="Cod Proveedor" />
-                     <asp:BoundField DataField="FechaContrato" HeaderText="Fecha Contrato" />
-                     <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
-                     <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
-                     <asp:BoundField DataField ="Monto" HeaderText ="Monto" />
-                     <%--<asp:ButtonField CommandName="btnVerContrato" Text="Ver" />--%>
-                 </Columns>
+            <asp:GridView ID="GrillaContratos" runat="server" AutoGenerateColumns="False" Width="100%">
+                <Columns>
+                    <asp:BoundField DataField="NroContrato" HeaderText="Nro Contrato" />
+                    <%--<asp:BoundField DataField="CodProveedor" HeaderText="Cod Proveedor" />--%>
+                    <asp:BoundField DataField="FechaContrato" HeaderText="Fecha Contrato" />
+                    <asp:BoundField DataField="FechaInicio" HeaderText="Fecha Inicio" />
+                    <asp:BoundField DataField="FechaFin" HeaderText="Fecha Fin" />
+                    <asp:BoundField DataField="Monto" HeaderText="Monto" />
+                    <%--<asp:ButtonField CommandName="btnVerContrato" Text="Ver" />--%>
+                </Columns>
             </asp:GridView>
             <br />
         </div>
-        <div id="div8">
-            <label>Contrato</label>
-
-        </div>
-
+       
 
     </article>
 

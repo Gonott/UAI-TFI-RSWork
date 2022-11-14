@@ -22,12 +22,20 @@ namespace RSWork
         {
             if (!this.IsPostBack)
             {
-                CargarDatosEmpresa();
-                EnlazarGrillaElementos();
-                DropDownTipo.Enabled = true;
-                EnlazarGrillaPublicaciones();
-                LimpiarCamposPublicacion();
-                EnlazarContratos();
+                if (Session["Proveedor"] != null)
+                {
+
+                    CargarDatosEmpresa();
+                    EnlazarGrillaElementos();
+                    DropDownTipo.Enabled = true;
+                    EnlazarGrillaPublicaciones();
+                    LimpiarCamposPublicacion();
+                    EnlazarContratos(); 
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                }
             }
 
         }
@@ -466,23 +474,31 @@ namespace RSWork
 
         private void EnlazarContratos()
         {
-            ContratoBLL contratoBLL = new ContratoBLL();
-
-            List<Contrato> contratos = new List<Contrato>();
-            contratos = contratoBLL.ListarContratosProveedor((Proveedor)Session["Proveedor"]);
-
-            GrillaContratos.DataSource = contratos.Select(cont => new
+            try
             {
-                NroContrato = cont.NumeroContrato,
-                CodProveedor = cont.codProveedor,
-                FechaContrato = cont.FechaContrato,
-                FechaInicio = cont.FechaInicio,
-                FechaFin = cont.FechaFinal,
-                Monto = cont.Monto
+                ContratoBLL contratoBLL = new ContratoBLL();
 
-            });
+                List<Contrato> contratos = new List<Contrato>();
+                contratos = contratoBLL.ListarContratosProveedor((Proveedor)Session["Proveedor"]);
 
-            GrillaContratos.DataBind();
+                GrillaContratos.DataSource = contratos.Select(cont => new
+                {
+                    NroContrato = cont.NumeroContrato,
+                    CodProveedor = cont.codProveedor,
+                    FechaContrato = cont.FechaContrato,
+                    FechaInicio = cont.FechaInicio,
+                    FechaFin = cont.FechaFinal,
+                    Monto = cont.Monto
+
+                });
+
+                GrillaContratos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
 
         }
 

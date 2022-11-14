@@ -48,8 +48,17 @@ namespace RSWork
   
         protected void VerAsideButton_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            ActualizarAside(int.Parse(btn.CommandArgument));
+            try
+            {
+                Button btn = (Button)sender;
+                ActualizarAside(int.Parse(btn.CommandArgument));
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+            
         }
 
 
@@ -84,28 +93,35 @@ namespace RSWork
 
         protected void ContratarButton_Click(object sender, EventArgs e)
         {
+            try
+            {
 
-            Button btn = (Button)sender;
-            Publicacion publicacion = new Publicacion();
-            publicacion =  publl.Seleccionar(int.Parse(btn.CommandArgument));
-            BLLElemento elembll = new BLLElemento();
-            Elemento elemento = new Elemento();
-            elemento = elembll.Seleccionar(publicacion.codElemento);
-            publicacion.Precio = elemento.Precio.ToString();
-            publicacion.Caracteristicas = elemento.Caracteristicas;
-            publicacion.Condición = elemento.Condición;
-            publicacion.Tipo = elemento.Tipo.ToString();
-            Session["PublicacionContratada"] = publicacion;
-            Usuario usu = new Usuario();
-            usu = (Usuario)Session["Usuario"];
-            if (usu.empresa.GetType() == typeof(Cliente))
-            {
-                Response.Redirect("ParametrosDelAlquiler.aspx");
+                Button btn = (Button)sender;
+                Publicacion publicacion = new Publicacion();
+                publicacion = publl.Seleccionar(int.Parse(btn.CommandArgument));
+                BLLElemento elembll = new BLLElemento();
+                Elemento elemento = new Elemento();
+                elemento = elembll.Seleccionar(publicacion.codElemento);
+                publicacion.Precio = elemento.Precio.ToString();
+                publicacion.Caracteristicas = elemento.Caracteristicas;
+                publicacion.Condición = elemento.Condición;
+                publicacion.Tipo = elemento.Tipo.ToString();
+                Session["PublicacionContratada"] = publicacion;
+                Usuario usu = new Usuario();
+                usu = (Usuario)Session["Usuario"];
+                if (usu.empresa.GetType() == typeof(Cliente))
+                {
+                    Response.Redirect("ParametrosDelAlquiler.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Debe ser Cliente para generar contratos')</script>");
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                 Response.Write("<script>alert('Debe ser Cliente para generar contratos')</script>");
-                
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
             
         }
@@ -113,10 +129,20 @@ namespace RSWork
 
         private void CargarFiltradas(string texto)
         {
-            publicaciones = publl.Filtrar(publl.ListarTodas(),texto);
-            DataListPublicaciones.DataSource = publicaciones;
-            DataListPublicaciones.DataBind();
+            try
+            {
+                publicaciones = publl.Filtrar(publl.ListarTodas(),texto);
+                DataListPublicaciones.DataSource = publicaciones;
+                DataListPublicaciones.DataBind();
 
+
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+           
         }
 
     }

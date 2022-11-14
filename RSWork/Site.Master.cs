@@ -18,35 +18,54 @@ namespace RSWork
 
         protected void BtnPerfil_Click(object sender, EventArgs e)
         {
-            if (this.Session["Usuario"] == null)
-            //    Request.Cookies["Usuario"] == null)
+            try
             {
-                Response.Redirect("Login.aspx");
+
+                if (this.Session["Usuario"] == null)
+                //    Request.Cookies["Usuario"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                if (this.Session["Usuario"].ToString() != null)
+                {
+                    Usuario usu = new Usuario();
+                    usu = (Usuario)Session["Usuario"];
+                    if (usu.empresa.GetType() == typeof(Cliente))
+                    {
+                        Response.Redirect("PerfilCliente.aspx");
+                        //llevar perfil cliente
+                    }
+                    if (usu.empresa.GetType() == typeof(Proveedor))
+                    {
+                        //llevar a perfil proveedor
+                        Response.Redirect("PerfilProveedor.aspx");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Ha ocurrido un error, contacta a soporte')</script>");
+                    }
+                }
             }
-            if(this.Session["Usuario"].ToString() != null)
+            catch (Exception ex)
             {
-                Usuario usu = new Usuario();
-                usu = (Usuario)Session["Usuario"];
-                if (usu.empresa.GetType() == typeof(Cliente))
-                {
-                    Response.Redirect("PerfilCliente.aspx");
-                    //llevar perfil cliente
-                }
-                if(usu.empresa.GetType()==typeof(Proveedor))
-                {
-                    //llevar a perfil proveedor
-                    Response.Redirect("PerfilProveedor.aspx");
-                }
-                else
-                {
-                    Response.Write("<script>alert('Ha ocurrido un error, contacta a soporte')</script>");
-                }
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
         }
 
+
+
         protected void LogoHome_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            try
+            {
+                Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
         }
 
         protected void BtnBuscar_Click(object sender, EventArgs e)

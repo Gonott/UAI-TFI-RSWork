@@ -16,11 +16,19 @@ namespace RSWork
             
             if (!this.IsPostBack)
             {
-                LlenarDatosEmpleados();
-                LlenarPagos();
-                LlenarCabeceraContrato();
-                //llenar data grid de empleados
-                //llenar dadta grid de pagos.
+                if (Session["Cliente"] != null)
+                {
+
+                    LlenarDatosEmpleados();
+                    LlenarPagos();
+                    LlenarCabeceraContrato();
+                    //llenar data grid de empleados
+                    //llenar dadta grid de pagos. 
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                }
             }
 
         }

@@ -20,47 +20,56 @@ namespace RSWork
 
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
-            Usuario usu = new Usuario();
-            EmpresaBLL empbll = new EmpresaBLL(); 
-
-
-            Criptografo encriptador = new Criptografo();
-            usu.Nombre = txtUsuario.Text;
-            usu.Contraseña = encriptador.GetSHA256(txtContraseña.Text);
-            UsuarioBLL usuariobll = new UsuarioBLL();
-            if(usuariobll.ComprobarUsuario(usu) == true)
+            try
             {
-                //El usuario sí existe en BD. 
-                usu = usuariobll.LlenarUsuario(usu);
-                usu.empresa = empbll.CargarEmpresa(usu.idempresa);
-                Session["Usuario"] = usu;
+
+                Usuario usu = new Usuario();
+                EmpresaBLL empbll = new EmpresaBLL();
 
 
-                //ahora a redireccionar segun el cliente, para ello hay que validar que tipo de cliente es.
-                
-                if (usu.empresa.GetType() == typeof(Cliente))
+                Criptografo encriptador = new Criptografo();
+                usu.Nombre = txtUsuario.Text;
+                usu.Contraseña = encriptador.GetSHA256(txtContraseña.Text);
+                UsuarioBLL usuariobll = new UsuarioBLL();
+                if (usuariobll.ComprobarUsuario(usu) == true)
                 {
-                    //tambien voy a guardar en sesion la empresa cliente
-                    Session["Cliente"] = usu.empresa;
-                    Response.Redirect("PerfilCliente.aspx");
-                    //llevar perfil cliente
+                    //El usuario sí existe en BD. 
+                    usu = usuariobll.LlenarUsuario(usu);
+                    usu.empresa = empbll.CargarEmpresa(usu.idempresa);
+                    Session["Usuario"] = usu;
+
+
+                    //ahora a redireccionar segun el cliente, para ello hay que validar que tipo de cliente es.
+
+                    if (usu.empresa.GetType() == typeof(Cliente))
+                    {
+                        //tambien voy a guardar en sesion la empresa cliente
+                        Session["Cliente"] = usu.empresa;
+                        Response.Redirect("PerfilCliente.aspx");
+                        //llevar perfil cliente
+                    }
+                    if (usu.empresa.GetType() == typeof(Proveedor))
+                    {
+                        //en sesion tambien la empresa proveedora
+                        Session["Proveedor"] = usu.empresa;
+                        //llevar perfil proveedor
+                        Response.Redirect("PerfilProveedor.aspx");
+                    }
+
+
+
                 }
-                if (usu.empresa.GetType() == typeof(Proveedor))
+                else
                 {
-                    //en sesion tambien la empresa proveedora
-                    Session["Proveedor"] = usu.empresa;
-                    //llevar perfil proveedor
-                    Response.Redirect("PerfilProveedor.aspx");
+
                 }
-
-
 
             }
-            else
+            catch (Exception ex)
             {
-               
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
             }
-            
 
 
 

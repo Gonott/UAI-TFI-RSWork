@@ -1,0 +1,21 @@
+﻿#detallepublicacion{
+
+position: relative;
+right:19%;
+max-width: 100%;
+margin: 0%;
+
+background: rgba(0, 0, 0, 0.3);
+text-align: justify;
+border-radius: 10px;
+position:fixed;
+}
+
+#publicaciones{
+    max-width: 75%;
+}
+
+article{
+    display: flex;
+    flex-direction: row;
+}

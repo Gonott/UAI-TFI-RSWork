@@ -17,11 +17,22 @@ namespace RSWork
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
-                CargarDatosEmpresa();
-                EnlazarEmpleados();
-                EnlazarContratos();
+                if ((Cliente)Session["Cliente"] != null)
+                {
+                    CargarDatosEmpresa();
+                    EnlazarEmpleados();
+                    EnlazarContratos();
+
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                    
+                }
+                
             }
 
         }
@@ -48,7 +59,9 @@ namespace RSWork
 
         protected void ModificarBtn_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+
                 Cliente estaEmpresa = (Cliente)Session["Cliente"];
                 estaEmpresa.Telefono = txtBoxTelefono.Text.ToString();
                 estaEmpresa.Direccion = txtBoxDireccion.Text;
@@ -57,6 +70,12 @@ namespace RSWork
                 Session["Cliente"] = null;
                 Session["Cliente"] = estaEmpresa;
                 CargarDatosEmpresa();
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
         }
 
         protected void BtnAlta_Click(object sender, EventArgs e)
@@ -105,21 +124,23 @@ namespace RSWork
         protected void BtnModificar_Click(object sender, EventArgs e)
         {
 
-            emptemporal.DNI = int.Parse(TextBoxDNI.Text.ToString());
-            emptemporal.Nombre = TextBoxNombreEmp.Text.ToString();
-            emptemporal.Dirección = TextBoxDireccionEmp.Text.ToString();
-            emptemporal.Email = TextBoxEmail.Text.ToString();
             try
             {
+                emptemporal.DNI = int.Parse(TextBoxDNI.Text.ToString());
+                emptemporal.Nombre = TextBoxNombreEmp.Text.ToString();
+                emptemporal.Dirección = TextBoxDireccionEmp.Text.ToString();
+                emptemporal.Email = TextBoxEmail.Text.ToString();
+
                 empBLL.modificar(emptemporal);
                 EnlazarEmpleados();
                 LimpiarTextEmpleados();
             }
-            catch (Exception ee)
+            catch (Exception ex)
             {
 
-                throw ee;
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
+    
         }
 
 
@@ -145,27 +166,36 @@ namespace RSWork
 
 
         protected void Grilla_RowCommand(object sender, GridViewCommandEventArgs e)
-        { 
-            Empleado emptemp= new Empleado();
-            int dniEmpleado = int.Parse(grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text);
-            string nombreEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text);
-            string direccionEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[2].Text);
-            string emailEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[3].Text);
-    
-            switch (e.CommandName)
+        {
+            try
             {
-                case "btnSeleccionarEmpleado":
-                    {
 
-                        TextBoxDNI.Text = dniEmpleado.ToString();
-                        TextBoxNombreEmp.Text = nombreEmpleado.ToString();
-                        TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
-                        TextBoxEmail.Text = emailEmpleado.ToString();
+                Empleado emptemp = new Empleado();
+                int dniEmpleado = int.Parse(grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text);
+                string nombreEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text);
+                string direccionEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[2].Text);
+                string emailEmpleado = (grillaEmpleados.Rows[int.Parse(e.CommandArgument.ToString())].Cells[3].Text);
 
-                        break;
-                    }
-                
+                switch (e.CommandName)
+                {
+                    case "btnSeleccionarEmpleado":
+                        {
 
+                            TextBoxDNI.Text = dniEmpleado.ToString();
+                            TextBoxNombreEmp.Text = nombreEmpleado.ToString();
+                            TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
+                            TextBoxEmail.Text = emailEmpleado.ToString();
+
+                            break;
+                        }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
         }
 
@@ -207,28 +237,36 @@ namespace RSWork
 
         protected void GrillaContrato_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Contrato conTemp = new Contrato();
-            int codContrato = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text);
-            int codProveedor = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text);
-            DateTime fecContrato = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[2].Text);
-            DateTime fecInicio = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[3].Text);
-            DateTime fecFin = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[4].Text);
-
-
-            switch (e.CommandName) //aca hay que ir a llenar el contrato con los elementos y demás.
+            try
             {
-                case "btnVerContrato":
-                    {
-
-                        //TextBoxDNI.Text = dniEmpleado.ToString();
-                        //TextBoxNombreEmp.Text = nombreEmpleado.ToString();
-                        //TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
-                        //TextBoxEmail.Text = emailEmpleado.ToString();
-
-                        break;
-                    }
+                Contrato conTemp = new Contrato();
+                int codContrato = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text);
+                int codProveedor = int.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text);
+                DateTime fecContrato = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[2].Text);
+                DateTime fecInicio = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[3].Text);
+                DateTime fecFin = DateTime.Parse(GrillaContratos.Rows[int.Parse(e.CommandArgument.ToString())].Cells[4].Text);
 
 
+                switch (e.CommandName) //aca hay que ir a llenar el contrato con los elementos y demás.
+                {
+                    case "btnVerContrato":
+                        {
+
+                            //TextBoxDNI.Text = dniEmpleado.ToString();
+                            //TextBoxNombreEmp.Text = nombreEmpleado.ToString();
+                            //TextBoxDireccionEmp.Text = direccionEmpleado.ToString();
+                            //TextBoxEmail.Text = emailEmpleado.ToString();
+
+                            break;
+                        }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
         }
 

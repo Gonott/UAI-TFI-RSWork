@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+#MainContent_CerrarSesionBtn {
+    width: 100%;
+}
+
 #empleados{
     display: grid;
     grid-template-columns: 65% 35%;
@@ -57,11 +61,11 @@
     width: 33%;
 }
 
-#contractcontainer {
+/*#contractcontainer {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto 20%;
-}
+}*/
 
 
 

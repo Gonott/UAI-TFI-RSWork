@@ -58,7 +58,7 @@
         <div>
             <h3>¿Desea confirmar el contrato de alquiler de elementos?</h3>
 
-            <p>Recibirá una copia por email y el contrato aparecerá en el perfil.</p>
+            <p>El contrato aparecerá en su perfil.</p>
 
             <asp:Button Text="Confirmar" runat="server" OnClick="Unnamed1_Click" />
         </div>

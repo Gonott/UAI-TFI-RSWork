@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil de Proveedor" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilProveedor.aspx.cs" Inherits="RSWork.PerfilProveedor" %>
+﻿<%@ Page Title="Perfil de Proveedor" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilProveedor.aspx.cs" Inherits="RSWork.PerfilProveedor" MaintainScrollPositionOnPostback="true"%>
 
 
 <asp:Content ID="PerfilProveedor" ContentPlaceHolderID="MainContent" runat="server">

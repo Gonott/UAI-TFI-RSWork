@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BusquedaPublicaciones.aspx.cs" Title="Busqueda de Elementos" Inherits="RSWork.BusquedaPublicaciones" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BusquedaPublicaciones.aspx.cs" Title="Busqueda de Elementos" Inherits="RSWork.BusquedaPublicaciones" MaintainScrollPositionOnPostback="true"%>
 
 
 <asp:Content ID="BusquedaElementos" ContentPlaceHolderID ="MainContent" runat="server">

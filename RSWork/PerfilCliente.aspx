@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil de Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilCLiente.aspx.cs" Inherits="RSWork.PerfilCliente" %>
+﻿<%@ Page Title="Perfil de Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilCLiente.aspx.cs" Inherits="RSWork.PerfilCliente" MaintainScrollPositionOnPostback="true" %>
 
 
 <asp:Content ID="PerfilProveedor" ContentPlaceHolderID="MainContent" runat="server">

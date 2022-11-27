@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contrato Preliminar" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ContratoPreliminar.aspx.cs" Inherits="RSWork.ContratoPreliminar" %>
+﻿<%@ Page Title="Contrato Preliminar" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ContratoPreliminar.aspx.cs" Inherits="RSWork.ContratoPreliminar" MaintainScrollPositionOnPostback="true"%>
 
 
 

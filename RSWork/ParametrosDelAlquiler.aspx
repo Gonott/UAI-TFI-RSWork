@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ParametrosDelAlquiler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ParametrosDelAlquiler.aspx.cs" Inherits="RSWork.ParametrosDelAlquiler" %>
+﻿<%@ Page Title="ParametrosDelAlquiler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ParametrosDelAlquiler.aspx.cs" Inherits="RSWork.ParametrosDelAlquiler" MaintainScrollPositionOnPostback="true"%>
 
 
 <asp:Content ID="ParametrosDelAlquiler" ContentPlaceHolderID="MainContent" runat="server">

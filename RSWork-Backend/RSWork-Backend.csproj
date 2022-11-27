@@ -48,6 +48,7 @@
     <Compile Include="Empleado.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Criptografo.cs" />
+    <Compile Include="ExcepcionNoControlada.cs" />
     <Compile Include="Orden.cs" />
     <Compile Include="Pago.cs" />
     <Compile Include="Proveedor.cs" />

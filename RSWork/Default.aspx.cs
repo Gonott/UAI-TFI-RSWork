@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
+
 
 namespace RSWork
 {
@@ -19,12 +21,19 @@ namespace RSWork
             try
             {
                 Response.Redirect("Dashboard.aspx");
+            }           
+            catch(ThreadAbortException)
+            {
+                Thread.ResetAbort();
             }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
+
+
         }
     }
 }

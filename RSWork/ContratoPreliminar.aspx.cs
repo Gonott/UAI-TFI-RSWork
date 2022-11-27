@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -85,10 +86,15 @@ namespace RSWork
                 Response.Write("<script>alert('Se ha dado de alta el contrato Exitosamente')</script>");
                 Response.Redirect("PerfilCliente.aspx");
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
     }

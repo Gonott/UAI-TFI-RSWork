@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BE;
 using BLL;
+using System.Threading;
 
 namespace RSWork
 {
@@ -53,12 +54,17 @@ namespace RSWork
                 Button btn = (Button)sender;
                 ActualizarAside(int.Parse(btn.CommandArgument));
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
 
 
@@ -82,11 +88,15 @@ namespace RSWork
                 AsideDataList.DataSource = publicaciones;
                 AsideDataList.DataBind();
             }
-            catch (Exception ex)
-
+            catch (ThreadAbortException)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Thread.ResetAbort();
+            }
+            catch (Exception ex)
+            {
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
 
         }
@@ -109,21 +119,36 @@ namespace RSWork
                 Session["PublicacionContratada"] = publicacion;
                 Usuario usu = new Usuario();
                 usu = (Usuario)Session["Usuario"];
-                if (usu.empresa.GetType() == typeof(Cliente))
+                if (Session["Usuario"] != null)
                 {
-                    Response.Redirect("ParametrosDelAlquiler.aspx");
-                }
-                else
-                {
-                    Response.Write("<script>alert('Debe ser Cliente para generar contratos')</script>");
+                    if (usu.empresa.GetType() == typeof(Cliente))
+                    {
+                        Response.Redirect("ParametrosDelAlquiler.aspx"); 
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Debe ser Cliente para generar contratos')</script>");
 
+                    }
                 }
+                if (Session["Usuario"] == null )
+                {
+                    Response.Write(" < script > alert('Por favor, ingrese en el sistema.') </ script > ");
+                    Response.Redirect("Login.aspx");
+                }
+                
+            }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
 
 
@@ -137,12 +162,17 @@ namespace RSWork
 
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-           
+
         }
 
     }

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using SERVICIOS;
 using BE;
 using BLL;
-
+using System.Threading;
 
 namespace RSWork
 {
@@ -65,10 +65,15 @@ namespace RSWork
                 }
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
 
 

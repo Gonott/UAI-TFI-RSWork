@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -57,13 +58,18 @@ namespace RSWork
                 txtboxEmail.Text = estaEmpresa.email;
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
 
-            
+
         }
 
         protected void ModificarBtn_Click(object sender, EventArgs e)
@@ -80,12 +86,17 @@ namespace RSWork
                 CargarDatosEmpresa();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
 
         #region ABM Elementos
@@ -118,12 +129,17 @@ namespace RSWork
 
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
 
         }
 
@@ -150,12 +166,17 @@ namespace RSWork
                 DropDownElementos.DataBind();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-           
+
 
 
         }
@@ -170,12 +191,17 @@ namespace RSWork
                 TextBoxCaracteristicas.Text = "";
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
 
 
@@ -196,10 +222,15 @@ namespace RSWork
                 LimpiarCamposElementos();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -218,10 +249,15 @@ namespace RSWork
                 EnlazarGrillaElementos();
                 LimpiarCamposElementos();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -240,10 +276,15 @@ namespace RSWork
                 EnlazarGrillaElementos();
                 LimpiarCamposElementos();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -278,12 +319,17 @@ namespace RSWork
 
                 }
             }
-            catch (Exception ex )
+            catch (ThreadAbortException)
             {
-
-                Response.Write("<script>alert('"+ ex.Message + "')</script>");
+                Thread.ResetAbort();
             }
-            
+            catch (Exception ex)
+            {
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
+            }
+
 
         }
 
@@ -334,12 +380,17 @@ namespace RSWork
                 EnlazarGrillaPublicaciones();
                 LimpiarCamposPublicacion();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
 
         }
 
@@ -390,12 +441,17 @@ namespace RSWork
             LimpiarCamposPublicacion();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-           
+
 
         }
 
@@ -411,12 +467,17 @@ namespace RSWork
 
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-           
+
         }
 
         public void EnlazarGrillaPublicaciones()
@@ -438,12 +499,17 @@ namespace RSWork
             grillaPublicaciones.DataBind();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
 
 
@@ -458,12 +524,17 @@ namespace RSWork
             
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>"); 
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-          
+
         }
 
 
@@ -494,10 +565,15 @@ namespace RSWork
 
                 GrillaContratos.DataBind();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
 
         }
@@ -509,10 +585,15 @@ namespace RSWork
                 Session.Clear();
                 Response.Redirect("Default.aspx");
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('Ha ocurrido un error: " + ex.Message + "'); window.location='PerfilCliente.aspx'</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
     }

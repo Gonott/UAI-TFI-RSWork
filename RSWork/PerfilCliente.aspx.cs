@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -71,10 +72,15 @@ namespace RSWork
                 Session["Cliente"] = estaEmpresa;
                 CargarDatosEmpresa();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -91,10 +97,15 @@ namespace RSWork
                 LimpiarTextEmpleados();
 
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -112,10 +123,15 @@ namespace RSWork
                 LimpiarTextEmpleados();
                 Response.Write("<script>alert('El Empleado fue dado de baja'); window.location='PerfilCliente.aspx'</script>");
             }
-            catch (Exception)
+            catch (ThreadAbortException)
             {
-                Response.Write("<script>alert('El Empleado no pudo ser dado de baja'); window.location='PerfilCliente.aspx'</script>");
-                
+                Thread.ResetAbort();
+            }
+            catch (Exception ex)
+            {
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -135,12 +151,17 @@ namespace RSWork
                 EnlazarEmpleados();
                 LimpiarTextEmpleados();
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-    
+
         }
 
 
@@ -192,10 +213,15 @@ namespace RSWork
 
                 }
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -263,10 +289,15 @@ namespace RSWork
 
                 }
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
         }
 
@@ -282,12 +313,17 @@ namespace RSWork
                 Session.Clear();
                 Response.Redirect("Default.aspx");
             }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('Ha ocurrido un error: " + ex.Message + "'); window.location='PerfilCliente.aspx'</script>");
+                Session["ExcepcionControlada"] = null;
+                Session["ExcepcionControlada"] = ex;
+                Response.Redirect("Excepcion.aspx");
             }
-            
+
         }
     }
 }

@@ -105,7 +105,7 @@ namespace BLL
             catch (Exception ex)
             {
 
-                throw ex; //test comment to github
+                throw ex;
             }
         }
 

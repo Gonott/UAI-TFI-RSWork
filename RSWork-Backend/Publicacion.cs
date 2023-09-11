@@ -105,7 +105,7 @@ namespace BLL
             catch (Exception ex)
             {
 
-                throw ex; //comentario prueba.
+                throw ex;
             }
         }
 

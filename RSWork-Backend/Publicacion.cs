@@ -117,7 +117,7 @@ namespace BLL
             {
                 return mapper.ListarTodo();
             }
-            catch (Exception ex)
+            catch (Exception ex) //otro comment test
             {
 
                 throw ex;
